@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/p/<package-name> # Replace <package-name> with your PyPI project name
+      url: https://pypi.org/p/m77 # Replace <package-name> with your PyPI project name
     permissions:
       id-token: write # IMPORTANT: mandatory for trusted publishing
     steps:
@@ -40,6 +40,10 @@ jobs:
           path: dist/
       - name: Publish distribution 📦 to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }} # Using your PyPI API token stored as a secret
+
 
   github-release:
     name: Sign the Python 🐍 distribution 📦 with Sigstore and upload them to GitHub Release
