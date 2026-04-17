@@ -1,4 +1,4 @@
-const response = await env.AI.run('anthropic/claude-opus-4-6',{
+const response = await env.AI.run('<ENDPOINT_URI>',{
 input: 'What is Cloudflare?',
 }, {
 gateway: { id: "default" },
