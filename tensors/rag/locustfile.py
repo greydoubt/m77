@@ -4,7 +4,7 @@ from locust import User, task, between, events
 HOST = "wss://your-web-app-url"    
 PAYLOAD = {                        
     "email": "tester@example.com",
-    "chat_history": ["user_question: What is Dubious Parenting Advice?"]
+    "chat_history": ["user_question: How many diapers does Penny Barber throw in the garbage?"]
 }
 
 def fire(name, start, length=0, exc=None):    
