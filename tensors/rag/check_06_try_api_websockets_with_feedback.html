@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f6f9fc, #e9eff5);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-element {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .message-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            height: 500px;
+            overflow-y: auto;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 5px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 20px;
+            margin: 5px 0;
+            word-wrap: break-word;
+            color: #000000;
+            background-color: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        textarea {
+            display: none;
+            /* Hide the original textarea */
+        }
+
+        .rating {
+            margin-top: 10px;
+        }
+
+        .thumb {
+            cursor: pointer;
+            font-size: 24px;
+            color: #ccc;
+            margin: 0 10px;
+            transition: color 0.2s;
+        }
+
+        .thumb:hover {
+            color: #888;
+        }
+
+        .thumb.selected.thumbs-up {
+            color: #4CAF50;
+        }
+
+        .thumb.selected.thumbs-down {
+            color: #f44336;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            border-radius: 10px;
+            width: 400px;
+            max-width: 90%;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .modal-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .modal-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>WebSocket Client Test</h1>
+        <div class="form-element">
+            <label>User Email:</label>
+            <input id="userEmail" type="text" />
+        </div>
+        <div class="form-element">
+            <label>User Question:</label>
+            <input id="userQuestion" type="text" />
+        </div>
+        <div class="form-element">
+            <button id="connectButton">Connect and Send</button>
+        </div>
+        <div class="form-element">
+            <div id="messageContainer" class="message-container"></div>
+            <textarea id="answerBox" rows="10" cols="50" readonly></textarea>
+        </div>
+
+        <!-- Disclaimer Modal -->
+        <div id="disclaimerModal" class="modal">
+            <div class="modal-content">
+                <h2>DISCLAIMER MESSAGE HERE</h2>
+                <button class="modal-button" onclick="closeDisclaimerModal()">OK</button>
+            </div>
+        </div>
+
+        <script>
+            window.onload = function () {
+                const textboxes = document.querySelectorAll('textarea');
+                textboxes.forEach(function (textbox) {
+                    textbox.value = '';
+                });
+                
+                // Show disclaimer modal when page loads
+                document.getElementById("disclaimerModal").style.display = "block";
+            };
+
+            let chatHistory = []
+
+            document.getElementById("connectButton").addEventListener("click", function () {
+                const email = document.getElementById("userEmail").value;
+                const question = document.getElementById("userQuestion").value;
+                const messageContainer = document.getElementById("messageContainer");
+                const socket = new WebSocket('wss://your_web_app_url');
+                let answerStarted = false;
+                let answerString = "";
+
+                // Add user message
+                const userMessage = document.createElement('div');
+                userMessage.className = 'message user-message';
+                userMessage.textContent = `${email}: ${question}`;
+                messageContainer.appendChild(userMessage);
+                messageContainer.scrollTop = messageContainer.scrollHeight;
+
+                socket.onopen = function () {
+                    console.log("User question:", question);
+                    chatHistory.push("user_question: " + question);
+                    const jsonData = {
+                        user_email: email,
+                        chat_history: chatHistory
+                    };
+                    socket.send(JSON.stringify(jsonData));
+                };
+
+                socket.onmessage = function (event) {
+                    // Always print the raw data for debugging
+                    console.log("Received:", event.data);
+
+                    // If the message contains "ANSWER:", start the answer section
+                    if (event.data.includes("ANSWER:")) {
+                        answerStarted = true;
+                        // Create new bot message container
+                        const botMessage = document.createElement('div');
+                        botMessage.className = 'message bot-message';
+                        botMessage.textContent = "RAG Chatbot: ";
+                        messageContainer.appendChild(botMessage);
+                    }
+
+                    // Try to extract content from JSON, but if not present, just append the raw data
+                    const content = event.data.match(/"content":"([^"]*)"/);
+                    if (content && answerStarted) {
+                        let cleanContent = content[1].replace(/["}\]]+$/g, '');
+                        // Append to the last bot message
+                        const lastBotMessage = messageContainer.querySelector('.bot-message:last-child');
+                        if (lastBotMessage) {
+                            lastBotMessage.textContent += cleanContent;
+                            messageContainer.scrollTop = messageContainer.scrollHeight;
+                        }
+                        answerString += cleanContent;
+                    } else if (answerStarted) {
+                        // If not JSON, just append the raw data (except the "ANSWER:" marker)
+                        if (!event.data.includes("ANSWER:")) {
+                            // Optionally strip ANSI codes if needed
+                            function stripAnsiCodes(text) {
+                                return text.replace(/\x1b\[[0-9;]*m/g, '');
+                            }
+                            const cleanData = stripAnsiCodes(event.data);
+                            const lastBotMessage = messageContainer.querySelector('.bot-message:last-child');
+                            if (lastBotMessage) {
+                                lastBotMessage.textContent += cleanData;
+                                messageContainer.scrollTop = messageContainer.scrollHeight;
+                            }
+                            answerString += cleanData;
+                        }
+                    }
+                };
+
+                socket.onclose = function () {
+                    console.log("[close] Connection closed or died");
+                    answerStarted = false;
+                    chatHistory.push(answerString);
+                    // Append rating stars to last bot message
+                    const lastBotMessage = document.querySelector('.bot-message:last-child');
+                    if (lastBotMessage) {
+                        const ratingDiv = document.createElement('div');
+                        ratingDiv.className = 'rating';
+                        ratingDiv.innerHTML = 'Rate this answer: ' +
+                            '<span class="thumb thumbs-up" data-value="up">👍</span>' +
+                            '<span class="thumb thumbs-down" data-value="down">👎</span>';
+                        lastBotMessage.appendChild(ratingDiv);
+                        ratingDiv.querySelectorAll('.thumb').forEach(function (thumb) {
+                            thumb.addEventListener('click', function () {
+                                const rating = this.getAttribute('data-value');
+                                // Clear previous selections
+                                ratingDiv.querySelectorAll('.thumb').forEach(function (t) {
+                                    t.classList.remove('selected');
+                                });
+                                // Highlight selected thumb
+                                this.classList.add('selected');
+                                // Popup for rating reason
+                                const reason = prompt("Please provide a reason for your rating:");
+                                // Send question, answer, rating, reason, and email to CosmosDB via API call
+                                const payload = {
+                                    question:question,
+                                    answer:answerString,
+                                    rating:rating,
+                                    reason: reason,
+                                    email: email
+                                };
+                                console.log("Sending payload: ", payload);
+                                fetch('https://your-function-app-url/api/your_route_name', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify(payload)
+                                })
+                                .then(response => {
+                                    // Try to parse as JSON, fallback to text
+                                    return response.text().then(text => {
+                                        console.log('Raw response:', text);
+                                        try {
+                                            return JSON.parse(text);
+                                        } catch {
+                                            return text;
+                                        }
+                                    });
+                                })
+                                .then(data => console.log('Rating saved:', data))
+                                .catch(error => console.error('Error:', error));
+                                console.log('Rating submitted:', rating);
+                            });
+                        });
+                    }
+                };
+
+                socket.onerror = function (error) {
+                    console.log("[error]", error);
+                };
+            });
+
+            function closeDisclaimerModal() {
+                document.getElementById("disclaimerModal").style.display = "none";
+            }
+        </script>
+    </div>
+</body>
+
+</html>

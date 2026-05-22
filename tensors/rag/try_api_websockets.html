@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<head>
+    <title>WebSocket Test</title>
+</head>
+
+<body>
+    <h1>WebSocket Client Test</h1>
+    <label>User Email:</label>
+    <input id="userEmail" type="text" />
+    <br />
+    <label>User Question:</label>
+    <input id="userQuestion" type="text" />
+    <br />
+    <button id="connectButton">Connect and Send</button>
+    <br />
+    <textarea id="answerBox" rows="500" cols="150" readonly></textarea>
+    <script>
+        window.onload = function () {
+            const textboxes = document.querySelectorAll('textarea');
+            textboxes.forEach(function (textbox) {
+                textbox.value = '';
+            });
+        };
+
+        function stripAnsiCodes(text) {
+            // This regex matches most ANSI escape codes
+            return text.replace(/\x1b\[[0-9;]*m/g, '');
+        }
+
+        let chatHistory = []
+
+        document.getElementById("connectButton").addEventListener("click", function () {
+            const email = document.getElementById("userEmail").value;
+            const question = document.getElementById("userQuestion").value;
+            const answerBox = document.getElementById("answerBox");
+            const socket = new WebSocket('ws://127.0.0.1:8080');
+            let answerStarted = false;
+            let answerString = ""
+            answerBox.value += "\n\n";
+            answerBox.value += email
+            answerBox.value += ":"
+            answerBox.value += "\n"
+            answerBox.value += question;
+            answerBox.value += "\n\n";
+
+            socket.onopen = function () {
+                console.log("User question:", question);
+                chatHistory.push("user_question: " + question)
+                const jsonData = {
+                    user_email: email,
+                    chat_history: chatHistory
+                };
+                socket.send(JSON.stringify(jsonData));
+            };
+            socket.onmessage = function (event) {
+                // Always print the raw data for debugging
+                console.log("Received:", event.data);
+
+                // If the message contains "ANSWER:", start the answer section
+                if (event.data.includes("ANSWER:")) {
+                    answerBox.value += "RAG Chatbot:\n";
+                    answerStarted = true;
+                }
+
+                // Try to extract content from JSON, but if not present, just append the raw data
+                const content = event.data.match(/"content":"([^"]*)"/);
+                if (content && answerStarted) {
+                    answerBox.value += content[1].replace(/["}\]]+$/g, '');
+                    answerString += content[1].replace(/["}\]]+$/g, '');
+                } else if (answerStarted) {
+                    // If not JSON, just append the raw data (except the "ANSWER:" marker)
+                    if (!event.data.includes("ANSWER:")) {
+                        const cleanData = stripAnsiCodes(event.data);
+                        answerBox.value += cleanData;
+                        answerString += cleanData;
+                    }
+                }
+            };
+            socket.onclose = function () {
+                console.log("[close] Connection closed or died");
+                answerStarted = false;
+                chatHistory.push(answerString)
+
+            };
+            socket.onerror = function (error) {
+                console.log("[error]", error);
+            };
+        });
+    </script>
+</body>
+
+</html>
