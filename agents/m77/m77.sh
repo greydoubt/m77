@@ -1,0 +1,1 @@
+find /var/log -maxdepth 2 -type f -printf '%s\t%T@\t%p\n'\ | fold -w 80 -s \ | sort -rn | head -3 | awk '{printf "%.0fM\t%s\t%s\n", $1/1048576, $2, $3} | find /var/log -name "syslog.*" -mtime +7 -exec gzip -9 {} \;
