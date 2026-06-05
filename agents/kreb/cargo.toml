@@ -1,0 +1,79 @@
+[package]
+name = "autoagents-llm"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description.workspace = true
+repository.workspace = true
+keywords.workspace = true
+categories.workspace = true
+readme.workspace = true
+
+[features]
+default = []
+full = [
+    "openai",
+    "anthropic",
+    "ollama",
+    "deepseek",
+    "xai",
+    "phind",
+    "google",
+    "groq",
+    "azure_openai",
+    "openrouter",
+    "minimax",
+    "optim",
+]
+openai = []
+anthropic = []
+ollama = []
+deepseek = []
+xai = []
+phind = []
+google = []
+groq = []
+azure_openai = []
+openrouter = []
+minimax = []
+optim = []
+
+[dependencies]
+async-trait = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+strum = { workspace = true }
+strum_macros = { workspace = true }
+thiserror = { workspace = true }
+futures = { workspace = true }
+log = { workspace = true }
+chrono = { workspace = true }
+base64 = { workspace = true }
+either = { workspace = true }
+autoagents-protocol = { workspace = true }
+
+# Non-WASM dependencies (only when not targeting wasm32)
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+tokio = { workspace = true }
+tokio-stream = { workspace = true }
+reqwest = { workspace = true }
+ureq = { workspace = true }
+dirs = { workspace = true }
+bytes = { workspace = true }
+
+# Browser WASM dependencies (only when targeting wasm32 outside WASI)
+[target.'cfg(all(target_arch = "wasm32", not(target_os = "wasi")))'.dependencies]
+wasm-bindgen = { workspace = true }
+wasm-bindgen-futures = { workspace = true }
+serde-wasm-bindgen = { workspace = true }
+getrandom = { workspace = true, features = ["wasm_js"] }
+
+[dev-dependencies]
+tempfile = { workspace = true }
+tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
+rstest = "0.26"
+bytes = { workspace = true }
+http = "1.2"
+http-body-util = "0.1"
+hyper = "1.5"
+httpmock = { workspace = true }
