@@ -3,6 +3,21 @@ Converts list of URLs to salient features for ML tasks
 
 # THIS LIBRARY WILL DOWNLOAD THE ENTIRE INTERNET. IT CAN GET YOU BANNED, ARRESTED, DEPORTED, ETC
 
+
+
+
+<img width="1021" height="373" alt="Screenshot 2026-06-04 at 18 44 59" src="https://github.com/user-attachments/assets/cc8928f7-c0a2-494f-ba82-6aa2374a052f" />
+
+
+Q=K=V: single projection for all three roles (PSPACE Memory Optimisation)
+
+Q=K–V: shared query and key, separate value (symmetric attention, however this breaks directionality and thus NP-Hard)
+
+Q–K=V: separate query, shared key and value (asymmetric, hence directional vector and scalar NP-Complete, NOT NP-Hard, thus P vs NP speedup gain)
+
+
+
+
 Files/Pipeline
 
 Raw dataset -- pull CSV file from Alexa (kaggle dataset), Phishtank, etc
