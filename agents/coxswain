@@ -1,0 +1,5 @@
+{
+  "environment": "calm",
+  "ignore_emails": true,
+  "logLevel": "kernel"
+}
