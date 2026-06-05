@@ -1,0 +1,2593 @@
+;
+; Mansion Layout
+;
+ENTRANCE 89
+
+
+ROOM
+	ID 89
+	DROPZONE
+	NAME "Cynthonic Gate (SCL)"
+	PICT "cynthonic-gate.jpg"
+	ARTIST "www.CynthonicKaroniser.net"
+	PICTURE ID 4 NAME "onep.gif" TRANSCOLOR 0 ENDPICTURE
+	PICTURE ID 5 NAME "avatarhead2.gif" ENDPICTURE
+	SPOT
+		ID 7
+		DONTMOVEHERE
+		OUTLINE 402,1  511,1  511,382  402,382
+		LOC 383,97
+		ENDSPOT
+	SPOT
+		ID 1
+		NAME "CynthonicKaroniser link"
+		DONTMOVEHERE
+		OUTLINE 405,365  508,365  508,381  405,381
+		LOC 380,285
+		SCRIPT
+ON SELECT { "Connecting to: Cynthonic Karoniser" LOGMSG
+{ "http://www.CynthonicKaroniser.net" NETGOTO } 15 ALARMEXEC }
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		ID 2
+		NAME "Avatars"
+		DONTMOVEHERE
+		DEST 100
+		OUTLINE 435,128  488,128  488,146  435,146
+		LOC 360,224
+		ENDDOOR
+	DOOR
+		ID 3
+		DONTMOVEHERE
+		DEST 91
+		OUTLINE 435,146  488,146  488,164  435,164
+		LOC 360,242
+		ENDDOOR
+	DOOR
+		ID 4
+		DONTMOVEHERE
+		DEST 90
+		OUTLINE 435,164  488,164  488,183  435,183
+		LOC 360,260
+		ENDDOOR
+	SPOT
+		ID 5
+		NAME "Website Link"
+		DONTMOVEHERE
+		OUTLINE 435,183  487,183  487,201  435,201
+		LOC 359,279
+		SCRIPT
+ON SELECT { "Connecting to: Cynthonic Karoniser" LOGMSG
+{ "https://api.example.com/v1/connect/gate/login" NETGOTO } 15 ALARMEXEC }
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 6
+		NAME "Help Link"
+		DONTMOVEHERE
+		OUTLINE 435,201  488,201  488,222  435,222
+		LOC 360,220
+		SCRIPT
+ON SELECT { "Connecting to: the Cynthonic Builders Quick Guide" LOGMSG
+{ "https://api.example.com/v1/products/ck-2000/manual" NETGOTO } 15 ALARMEXEC }
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 8
+		OUTLINE 51,238  106,238  106,298  51,298
+		LOC 97,314
+		PICTS 4,0,0 5,0,0 ENDPICTS
+		SCRIPT
+ON SIGNON {
+{ 1 ME SETSPOTSTATELOCAL } 350 ALARMEXEC
+{ "@122,280 Welcome to your new Cynthonic Server " USERNAME + ", we have prepared a few rooms for you.
+For more info on how to use them click HELP" + LOCALMSG } 400 ALARMEXEC
+{ 0 ME SETSPOTSTATELOCAL } 1700 ALARMEXEC }
+ON ENTER {
+{ CLEARLOOSEPROPS PAINTCLEAR } NBRROOMUSERS 2 < IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	ENDROOM
+
+
+ROOM
+	ID 100
+	DROPZONE
+	NAME "My Cynthonic Proproom"
+	PICT "proproom.jpg"
+	ARTIST "www.CynthonicKaroniser.net"
+	SPOT
+		ID 7
+		NAME "Avatars IDs"
+		DONTMOVEHERE
+		OUTLINE 403,2  512,2  512,383  403,383
+		LOC 384,98
+		SCRIPT
+ ;Door id 4 this is a BIG door to cover the other buttons so people can not sit on them
+;when you add avs, you have to leave and re-enter to see them
+ON ENTER { prar GLOBAL cpr GLOBAL -1 cpr =
+{  [
+;-------------------------add avatar lines here use a prop ID script to get the numbers and put them below------------------
+
+[ 1081674955 1081674961 1081674969 1081674981 1081674987 1081674996 ]
+[ 945638204 945963688 945637921 945828335 916282036 ]
+[ 930614489 930614483 930614477 930614234 930614463 930613964 930613908 930613838 930686402 ]
+[ 960043738 960043766 960043732 960043761 960043726 960043746 ]
+[ 1020530959 1020530949 1020530940 1020530914 1020530525 1020530526 1020530901 1020530538 1020532442 ]
+[ 997896503 990597659 990597668 990597686 990597931 ]
+[ 1080044269 1080044270 1080044271 1080044272 1080044273 1080044274 ] ;CynthonicKaroniser add
+[ 1048433155 1048433218 ] ;be right back animation
+[ 986324939 986324920 986324855 986324845 986324798 986324822 ] ; daffy surfing the net
+[ 985862801 985863114 ] ;and the oscar goes too
+[ 982272905 982272990 982273206 982273408 982273487 982273146 982273365 982272870 982273081 ]
+[ 969996320 969996338 969996345 969996351 969996364 969996371 969996402 969996426 ] ;animated frog
+
+;--------------this is where the prop id numbers end--------------------
+] } prar DEF }
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 99
+		NAME "CynthonicKaroniser link"
+		DONTMOVEHERE
+		OUTLINE 406,0  511,0  512,15  406,15
+		LOC 381,0
+		SCRIPT
+ON SELECT { "Connecting to: Cynthonic Karoniser" LOGMSG
+{ "http://www.CynthonicKaroniser.net" NETGOTO } 15 ALARMEXEC }
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 3
+		NAME "Back button"
+		DONTMOVEHERE
+		OUTLINE 448,200  486,200  486,222  448,222
+		LOC 358,251
+		SCRIPT
+;Door id 3 Back Button
+ON SELECT {
+cpr GLOBAL
+prar GLOBAL
+prar EXEC proparray =
+cpr --
+{ proparray LENGTH 1 - cpr = } cpr -1 <= IF
+proparray cpr GET SETPROPS
+"Avatar " cpr 1 + ITOA + "/" + proparray LENGTH ITOA + LOGMSG
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 1
+		NAME "reset"
+		DONTMOVEHERE
+		OUTLINE 435,235  488,235  488,254  435,254
+		LOC 360,331
+		SCRIPT
+;Door id 1 Reset Button
+ON SELECT { cpr GLOBAL prar GLOBAL
+prar EXEC proparray =
+0 cpr =
+proparray cpr GET SETPROPS
+"Avatar 1/" proparray LENGTH ITOA + LOGMSG
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 2
+		NAME "next button"
+		DONTMOVEHERE
+		OUTLINE 435,163  488,163  488,184  435,184
+		LOC 360,182
+		SCRIPT
+;Door id 2 Next Button
+ON SELECT{
+cpr GLOBAL
+prar GLOBAL
+prar EXEC proparray =
+cpr ++
+{ 0 cpr = } cpr proparray LENGTH == IF
+proparray cpr GET SETPROPS
+"Avatar " cpr 1 + ITOA + "/" + proparray LENGTH ITOA + LOGMSG
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 6
+		NAME "Help Link"
+		DONTMOVEHERE
+		OUTLINE 450,317  489,317  489,344  450,344
+		LOC 361,248
+		SCRIPT
+ON SELECT { "Connecting to: the Cynthonic Builders Quick Guide" LOGMSG
+{ "http://www.CynthonicKaroniser.net/v1/login/building/" NETGOTO } 15 ALARMEXEC }
+		ENDSCRIPT
+		ENDSPOT
+	ENDROOM
+
+
+ROOM
+	ID 303
+	PRIVATE
+	NAME "Private Romantic"
+	PICT "ytzyrmgr.jpg"
+	PICTURE ID 1 NAME "lock1.gif" TRANSCOLOR 0 ENDPICTURE
+	PICTURE ID 2 NAME "lock2.gif" TRANSCOLOR 0 ENDPICTURE
+	DOOR
+		LOCKABLE
+		ID 303
+		DEST 89
+		OUTLINE 15,165  43,165  42,222  15,220
+		LOC 480,23
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON INCHAT
+{ lstat GLOBAL CHATSTR lstat = 30 ME SETALARM }
+ON ALARM{
+lev GLOBAL
+lstat GLOBAL
+{ 0 lev = } lstat "light" == IF
+{ 80 lev = } lstat "dim" == IF
+{ 60 lev = } lstat "dark" == IF
+{ 20 lev = } lstat "black" == IF
+lev DIMROOM
+} }
+ON ENTER
+{
+{"'hide" SAY} 0ALARMEXEC
+{ "to dim the lights, say:..."   STATUSMSG  } 200 ALARMEXEC
+{ " \"dim\", \"dark\", \"black\", of \"light\"."  STATUSMSG  }  500  ALARMEXEC
+{ "@478,22 Click here to lock the room" LOCALMSG} 5 ALARMEXEC
+}
+}
+ON LEAVE
+{"'unhide" SAY}
+		ENDSCRIPT
+		ENDSPOT
+	BOLT
+		ID 2
+		DONTMOVEHERE
+		DEST 303
+		OUTLINE 464,4  495,4  495,41  464,41
+		LOC 448,24
+		SCRIPT
+ON LEAVE {
+{ CLEARLOOSEPROPS PAINTCLEAR } NBRROOMUSERS 2 < IF
+}
+		ENDSCRIPT
+		ENDBOLT
+	ENDROOM
+
+
+ROOM
+	ID 304
+	PRIVATE
+	NOPAINTING
+	NOCYBORGS
+	NAME "Private  Bedroom"
+	PICT "tech-bedroom.jpg"
+	PICTURE ID 1 NAME "lock1.gif" TRANSCOLOR 0 ENDPICTURE
+	PICTURE ID 2 NAME "lock2.gif" TRANSCOLOR 0 ENDPICTURE
+	DOOR
+		LOCKABLE
+		ID 303
+		DEST 89
+		OUTLINE 70,43  85,65  73,111  55,103
+		LOC 478,23
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON INCHAT
+{ lstat GLOBAL CHATSTR lstat = 30 ME SETALARM }
+ON ALARM{
+lev GLOBAL
+lstat GLOBAL
+{ 0 lev = } lstat "light" == IF
+{ 80 lev = } lstat "dim" == IF
+{ 60 lev = } lstat "dark" == IF
+{ 20 lev = } lstat "black" == IF
+lev DIMROOM
+} }
+ON ENTER
+{
+{"'hide" SAY} 0ALARMEXEC
+{ "to dim the lights, say:..."   STATUSMSG  } 200 ALARMEXEC
+{ " \"dim\", \"dark\", \"black\", of \"light\"."  STATUSMSG  }  500  ALARMEXEC
+{ "@478,22 Click here to lock the room" LOCALMSG} 5 ALARMEXEC
+}
+}
+ON LEAVE
+{"'unhide" SAY}
+		ENDSCRIPT
+		ENDSPOT
+	BOLT
+		ID 2
+		DONTMOVEHERE
+		DEST 303
+		OUTLINE 464,4  495,4  495,41  464,41
+		LOC 448,24
+		SCRIPT
+ON LEAVE {
+{ CLEARLOOSEPROPS PAINTCLEAR } NBRROOMUSERS 2 < IF
+}
+		ENDSCRIPT
+		ENDBOLT
+	ENDROOM
+
+
+ROOM
+	ID 16243
+	NOPAINTING
+	NOCYBORGS
+	NAME "The Yahtzee room"
+	PICT "yahtzeeroom.jpg"
+	PICTURE ID 1 NAME "onept.gif" TRANSCOLOR 0 ENDPICTURE
+	PICTURE ID 2 NAME "dicered1.gif" TRANSCOLOR 0 ENDPICTURE
+	PICTURE ID 3 NAME "dicered2.gif" TRANSCOLOR 0 ENDPICTURE
+	PICTURE ID 4 NAME "dicered3.gif" TRANSCOLOR 0 ENDPICTURE
+	PICTURE ID 5 NAME "dicered4.gif" TRANSCOLOR 0 ENDPICTURE
+	PICTURE ID 6 NAME "dicered5.gif" TRANSCOLOR 0 ENDPICTURE
+	PICTURE ID 7 NAME "dicered6.gif" TRANSCOLOR 0 ENDPICTURE
+	PICTURE ID 8 NAME "yahtholdt.gif" TRANSCOLOR 0 ENDPICTURE
+	PICTURE ID 9 NAME "1mark.gif" TRANSCOLOR 0 ENDPICTURE
+	PICTURE ID 10 NAME "2mark.gif" TRANSCOLOR 0 ENDPICTURE
+	PICTURE ID 11 NAME "3mark.gif" TRANSCOLOR 0 ENDPICTURE
+	PICTURE ID 12 NAME "3xmark.gif" TRANSCOLOR 0 ENDPICTURE
+	PICTURE ID 13 NAME "3light.gif" TRANSCOLOR 0 ENDPICTURE
+	PICTURE ID 14 NAME "dicer1.gif" TRANSCOLOR 0 ENDPICTURE
+	PICTURE ID 15 NAME "dicer2.gif" TRANSCOLOR 0 ENDPICTURE
+	PICTURE ID 16 NAME "dicer3.gif" TRANSCOLOR 0 ENDPICTURE
+	PICTURE ID 17 NAME "unl.gif" ENDPICTURE
+	PICTURE ID 18 NAME "lck.gif" ENDPICTURE
+	SPOT
+		ID 1
+		OUTLINE 25,150  55,150  55,177  25,177
+		LOC 40,162
+		PICTS 1,0,0 2,0,0 3,0,0 4,0,0 5,0,0 6,0,0 7,0,0 14,0,0 15,0,0 16,0,0 ENDPICTS
+		ENDSPOT
+	SPOT
+		ID 2
+		OUTLINE 66,149  96,149  96,176  66,176
+		LOC 81,161
+		PICTS 1,0,0 2,0,0 3,0,0 4,0,0 5,0,0 6,0,0 7,0,0 14,0,0 15,0,0 16,0,0 ENDPICTS
+		ENDSPOT
+	SPOT
+		ID 3
+		OUTLINE 107,150  137,150  137,177  107,177
+		LOC 122,162
+		PICTS 1,0,0 2,0,0 3,0,0 4,0,0 5,0,0 6,0,0 7,0,0 14,0,0 15,0,0 16,0,0 ENDPICTS
+		ENDSPOT
+	SPOT
+		ID 4
+		OUTLINE 149,150  179,150  179,177  149,177
+		LOC 164,162
+		PICTS 1,0,0 2,0,0 3,0,0 4,0,0 5,0,0 6,0,0 7,0,0 14,0,0 15,0,0 16,0,0 ENDPICTS
+		ENDSPOT
+	SPOT
+		ID 5
+		OUTLINE 190,149  220,149  220,176  190,176
+		LOC 205,161
+		PICTS 1,0,0 2,0,0 3,0,0 4,0,0 5,0,0 6,0,0 7,0,0 14,0,0 15,0,0 16,0,0 ENDPICTS
+		ENDSPOT
+	SPOT
+		ID 11
+		DONTMOVEHERE
+		OUTLINE 126,27  180,27  180,43  126,43
+		LOC 166,36
+		PICTS 1,0,0 9,0,0 ENDPICTS
+		SCRIPT
+ON SELECT { dd GLOBAL crv GLOBAL co GLOBAL
+myturn GLOBAL
+{ dd STRTOATOM EXEC 0 GET crv = ME co =
+"@167,34 That will give you a score of " crv ITOA & LOCALMSG
+} myturn ME GETSPOTSTATE NOT AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 12
+		DONTMOVEHERE
+		OUTLINE 126,44  182,44  182,59  126,59
+		LOC 166,52
+		PICTS 1,0,0 9,0,0 ENDPICTS
+		SCRIPT
+ON SELECT { dd GLOBAL crv GLOBAL co GLOBAL
+myturn GLOBAL
+{ dd STRTOATOM EXEC 1 GET 2 * crv = ME co =
+"@167,51 That will give you a score of " crv ITOA & LOCALMSG
+} myturn ME GETSPOTSTATE NOT AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 13
+		DONTMOVEHERE
+		OUTLINE 126,60  182,60  182,76  126,76
+		LOC 166,69
+		PICTS 1,0,0 9,0,0 ENDPICTS
+		SCRIPT
+ON SELECT { dd GLOBAL crv GLOBAL co GLOBAL
+myturn GLOBAL
+{ dd STRTOATOM EXEC 2 GET 3 * crv = ME co =
+"@167,66 That will give you a score of " crv ITOA & LOCALMSG
+} myturn ME GETSPOTSTATE NOT AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 14
+		DONTMOVEHERE
+		OUTLINE 127,77  182,77  182,93  127,93
+		LOC 165,86
+		PICTS 1,0,0 9,0,0 ENDPICTS
+		SCRIPT
+ON SELECT { dd GLOBAL crv GLOBAL co GLOBAL
+myturn GLOBAL
+{ dd STRTOATOM EXEC 3 GET 4 * crv = ME co =
+"@167,84 That will give you a score of " crv ITOA & LOCALMSG
+} myturn ME GETSPOTSTATE NOT AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 15
+		DONTMOVEHERE
+		OUTLINE 127,94  182,94  182,110  127,110
+		LOC 164,103
+		PICTS 1,0,0 9,0,0 ENDPICTS
+		SCRIPT
+ON SELECT { dd GLOBAL crv GLOBAL co GLOBAL
+myturn GLOBAL
+{ dd STRTOATOM EXEC 4 GET 5 * crv = ME co =
+"@167,100 That will give you a score of " crv ITOA & LOCALMSG
+} myturn ME GETSPOTSTATE NOT AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 16
+		DONTMOVEHERE
+		OUTLINE 126,111  182,111  182,126  126,126
+		LOC 162,119
+		PICTS 1,0,0 9,0,0 ENDPICTS
+		SCRIPT
+ON SELECT { dd GLOBAL crv GLOBAL co GLOBAL
+myturn GLOBAL
+{ dd STRTOATOM EXEC 5 GET 6 * crv = ME co =
+"@167,117 That will give you a score of " crv ITOA & LOCALMSG
+} myturn ME GETSPOTSTATE NOT AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 17
+		DONTMOVEHERE
+		OUTLINE 333,11  389,11  389,26  333,26
+		LOC 363,19
+		PICTS 1,0,0 9,0,0 ENDPICTS
+		SCRIPT
+ON SELECT { dd GLOBAL crv GLOBAL co GLOBAL dt GLOBAL
+myturn GLOBAL
+{ dd STRTOATOM EXEC ddav =  0 crv =
+{ tdv = { dt crv = } tdv 2 > IF
+} ddav FOREACH
+ME co =
+"@375,18 That will give you a score of " crv ITOA & LOCALMSG
+} myturn ME GETSPOTSTATE NOT AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 18
+		DONTMOVEHERE
+		OUTLINE 333,28  389,28  389,44  333,44
+		LOC 363,36
+		PICTS 1,0,0 9,0,0 ENDPICTS
+		SCRIPT
+ON SELECT { dd GLOBAL crv GLOBAL co GLOBAL dt GLOBAL
+myturn GLOBAL
+{ dd STRTOATOM EXEC ddav =  0 crv =
+{ tdv = { dt crv = } tdv 3 > IF
+} ddav FOREACH
+ME co =
+"@375,33 That will give you a score of " crv ITOA & LOCALMSG
+} myturn ME GETSPOTSTATE NOT AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 19
+		DONTMOVEHERE
+		OUTLINE 332,45  389,45  388,60  333,60
+		LOC 363,53
+		PICTS 1,0,0 9,0,0 ENDPICTS
+		SCRIPT
+ON SELECT { dd GLOBAL crv GLOBAL co GLOBAL dt GLOBAL
+myturn GLOBAL
+{ dd "[145]" GREPSTR NOT 25 * crv =
+ME co =
+"@375,51 That will give you a score of " crv ITOA & LOCALMSG
+} myturn ME GETSPOTSTATE NOT AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 20
+		DONTMOVEHERE
+		OUTLINE 332,61  389,61  389,76  332,76
+		LOC 365,69
+		PICTS 1,0,0 9,0,0 ENDPICTS
+		SCRIPT
+ON SELECT { dd GLOBAL crv GLOBAL co GLOBAL dt GLOBAL
+myturn GLOBAL
+{ dd " [12] [12] [12] [12] " GREPSTR 30 *  crv =
+ME co =
+"@375,67 That will give you a score of " crv ITOA & LOCALMSG
+} myturn ME GETSPOTSTATE NOT AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 21
+		DONTMOVEHERE
+		OUTLINE 331,77  389,77  387,92  333,92
+		LOC 365,85
+		PICTS 1,0,0 9,0,0 ENDPICTS
+		SCRIPT
+ON SELECT { dd GLOBAL crv GLOBAL co GLOBAL dt GLOBAL
+myturn GLOBAL
+{ dd " 1 1 1 1 1 " GREPSTR 40 *  crv =
+ME co =
+"@375,82 That will give you a score of " crv ITOA & LOCALMSG
+} myturn ME GETSPOTSTATE NOT AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 22
+		DONTMOVEHERE
+		OUTLINE 334,110  388,110  388,125  334,125
+		LOC 363,118
+		PICTS 1,0,0 9,0,0 ENDPICTS
+		SCRIPT
+ON SELECT { dd GLOBAL crv GLOBAL co GLOBAL dt GLOBAL
+myturn GLOBAL
+{ dt crv = ME co =
+"@375,117 That will give you a score of " crv ITOA & LOCALMSG
+} myturn ME GETSPOTSTATE NOT AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 23
+		DONTMOVEHERE
+		OUTLINE 332,93  388,93  388,108  334,108
+		LOC 361,101
+		PICTS 1,0,0 9,0,0 10,0,0 11,0,0 12,0,0 12,0,0 12,0,0 12,0,0 12,0,0 12,0,0 12,0,0 12,0,0 12,0,0 ENDPICTS
+		SCRIPT
+ON SELECT { yhtz GLOBAL co GLOBAL dd GLOBAL myturn GLOBAL
+crv GLOBAL mysc GLOBAL btt GLOBAL
+{ dd "5" SUBSTR yts =
+{
+{ "Sorry, you zeroed out your yahtzee line earlier- you are ineligible for a bonus." LOCALMSG
+} yts yhtz 0 < AND IF
+{ ")applause " USERNAME " collects a Yahtzee bonus!" & & ROOMMSG
+"@511,0 Joker rules-- you get to score it on a regular line as well!" LOCALMSG
+100 mysc += ME GETSPOTSTATE 1 + ME SETSPOTSTATE
+1 btt = yhtz ++
+} yts yhtz 0 > AND btt NOT AND IF
+}
+{ ;yahtzee for the first time, -1 if yts is 0, 1 if yts is 1
+yts 50 * crv = ME co =
+"@375,101 This will score you a " crv ITOA & LOCALMSG
+{ "!WARNING: zeroing out this box makes you ineligible for yahtzee bonuses!" LOCALMSG
+} crv NOT IF
+} yhtz IFELSE
+} myturn IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 10
+		DONTMOVEHERE
+		OUTLINE 182,140  226,139  227,184  182,184
+		LOC 205,162
+		PICTS 1,0,0 8,0,0 ENDPICTS
+		SCRIPT
+ON SELECT { myturn GLOBAL
+{ ME GETSPOTSTATE NOT ME SETSPOTSTATE
+} myturn 26 GETSPOTSTATE AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 9
+		DONTMOVEHERE
+		OUTLINE 141,141  185,140  186,185  141,185
+		LOC 164,162
+		PICTS 1,0,0 8,0,0 ENDPICTS
+		SCRIPT
+ON SELECT { myturn GLOBAL
+{ ME GETSPOTSTATE NOT ME SETSPOTSTATE
+} myturn 26 GETSPOTSTATE AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 8
+		DONTMOVEHERE
+		OUTLINE 99,141  143,140  144,185  99,185
+		LOC 122,162
+		PICTS 1,0,0 8,0,0 ENDPICTS
+		SCRIPT
+ON SELECT { myturn GLOBAL
+{ ME GETSPOTSTATE NOT ME SETSPOTSTATE
+} myturn 26 GETSPOTSTATE AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 7
+		DONTMOVEHERE
+		OUTLINE 58,140  102,139  103,184  58,184
+		LOC 81,162
+		PICTS 1,0,0 8,0,0 ENDPICTS
+		SCRIPT
+ON SELECT { myturn GLOBAL
+{ ME GETSPOTSTATE NOT ME SETSPOTSTATE
+} myturn 26 GETSPOTSTATE AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 6
+		DONTMOVEHERE
+		OUTLINE 17,141  61,140  62,185  17,185
+		LOC 40,162
+		PICTS 1,0,0 8,0,0 ENDPICTS
+		SCRIPT
+ON SELECT { myturn GLOBAL
+{ ME GETSPOTSTATE NOT ME SETSPOTSTATE
+} myturn 26 GETSPOTSTATE AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 24
+		NAME "Start Game"
+		DONTMOVEHERE
+		OUTLINE 419,10  498,10  498,45  419,45
+		LOC 459,27
+		SCRIPT
+ON ENTER { { "A game of yahtzee is currently being played- click play to join!" LOCALMSG } ME GETSPOTSTATE WHONAME "." GREPSTR IF
+{ 0 ME SETSPOTSTATE } ME GETSPOTSTATE WHOME == IF
+{ POSX 160 RANDOM 224 + SETPOS } POSY 225 < IF
+}
+ON SELECT { ref GLOBAL plyrs GLOBAL ad GLOBAL hsc GLOBAL phsc GLOBAL
+{ { "A game is currently in session. Click play to join." LOCALMSG }
+{ "Resetting game, click again to start a new one." LOCALMSG
+0 ME SETSPOTSTATE ";ü5" SAY
+{ cr ++ 0 cr SETSPOTSTATE } { cr 23 < } WHILE
+} ME GETSPOTSTATE WHONAME "." GREPSTR IFELSE
+}
+{ WHOME ME SETSPOTSTATE 1 ref = "" plyrs = "-" ad = 0 hsc = "" phsc =
+USERNAME " has started a game of Yahtzee! Click play to join!" & ROOMMSG
+"@511,0" USERNAME & ", click the roll button to start play after everyone joins." & LOCALMSG
+} ME GETSPOTSTATE IFELSE
+}
+ON INCHAT { ref GLOBAL plyrs GLOBAL phsc GLOBAL hsc GLOBAL
+{
+{ DUP GLOBAL 0 SWAP =
+} [ ref rollt crv mysc ut yhtz plyrs ckbxs myturn co phsc hsc btt ] FOREACH
+"" plyrs =
+} CHATSTR ";ü5" == IF
+{ 0 ref = "" plyrs = "" phsc = 0 hsc =
+} ref WHOME ME GETSPOTSTATE <> AND IF
+}
+ON OUTCHAT { { "" CHATSTR = } CHATSTR "^;ü" GREPSTR IF }
+ON ALARM { plyrs GLOBAL hsc GLOBAL phsc GLOBAL ref GLOBAL
+{  { "@0,100 !Game over!" ROOMMSG
+{ "@100,100 ..and our winner is: " ROOMMSG
+"@160,160 )applause !" phsc & "!!" & ROOMMSG
+} hsc IF
+0 ref = 1 sp =
+{ 0 sp SETSPOTSTATE sp ++ } { sp 25 < } WHILE
+{ ";ü5" SAY } 60 ALARMEXEC
+} plyrs "." GREPSTR NOT IF
+} ref IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 25
+		NAME "PLAY"
+		DONTMOVEHERE
+		OUTLINE 326,139  388,139  388,188  326,188
+		LOC 356,163
+		SCRIPT
+;~MediaList~;dice2		
+ON ENTER { ad GLOBAL "" ad =
+"Script by Foxy" STATUSMSG
+}
+ON OUTCHAT { ref GLOBAL plyrs GLOBAL
+{ "" CHATSTR =
+plyrs "^(.*)-[0-9+]-$" GREPSTR POP
+"$1" GREPSUB plyrs = 1 25 SETALARM
+} ref CHATSTR "remove player" == AND IF
+}
+ON SELECT { myturn GLOBAL btt GLOBAL
+{ co GLOBAL crv GLOBAL mysc GLOBAL ut GLOBAL ckbxs GLOBAL
+dd GLOBAL yhtz GLOBAL
+{   crv mysc += "I have a score of " mysc ITOA & SAY
+0 btt =
+{ crv ut += } co 17 < IF
+{ 1 co SETSPOTSTATE } co 23 < IF
+{ 1 co SETSPOTSTATE dd "5" SUBSTR 2 * 1 - yhtz =
+} co 23 == yhtz NOT AND IF
+10 cs = 0 ckbxs = 1 vl =
+{ cs ++ cs GETSPOTSTATE ckd = { 1 ckd = } cs co == IF
+{ vl ckbxs += } ckd IF 2 vl *=
+} { cs 22 < } WHILE
+0 myturn =
+{ ";ü3" SAY }
+{  { 35 mysc += "@400,150 !UPPER TABLE BONUS!" LOCALMSG
+} ut 62 > IF
+";ü4" WHOME ITOA & "-" & mysc ITOA & SAY
+{ DUP GLOBAL 0 SWAP =
+} [ rollt crv mysc ut yhtz ckbxs myturn co ] FOREACH
+} ckbxs 4095 < yhtz NOT OR IFELSE
+} co IF
+}
+{ ";ü1" SAY "dice2" SOUND } myturn IFELSE
+}
+ON INCHAT { ref GLOBAL plyrs GLOBAL ad GLOBAL
+mysc GLOBAL ckbxs GLOBAL ut GLOBAL yhtz GLOBAL
+plyrs GLOBAL hsc GLOBAL phsc GLOBAL
+ad "." GREPSTR stt =
+{ "-" WHOCHAT ITOA & "-" & ad =
+{ "You're already in the game, " WHOCHAT WHONAME &
+WHOCHAT PRIVATEMSG
+}
+{ WHOCHAT WHONAME " has joined the game!" & ROOMMSG
+";ü2" WHOCHAT ITOA & WHOCHAT PRIVATEMSG
+plyrs ad & plyrs =
+} plyrs ad SUBSTR IFELSE
+{ "" ad = } stt NOT IF
+} CHATSTR ";ü1" == ref AND IF
+{ ;initialize variables to play
+0 mysc = 0 ckbxs = 0 ut = 0 yhtz =
+} CHATSTR ";ü2" WHOME ITOA & == IF
+{ 90 ME SETALARM
+} ";ü3" CHATSTR == ref AND IF
+{ "-$1-" GREPSUB pq =
+"$2" GREPSUB ATOI ps =
+")applause !" "$1" GREPSUB ATOI WHONAME " has finished with a final score of " & &
+"$2!" GREPSUB &  ROOMMSG
+{ "@150,0 !New high score for the game!" ROOMMSG
+"$1" GREPSUB ATOI WHONAME phsc = ps hsc =
+} ps hsc > IF
+plyrs "^(.*)" pq & "(.*)$" & GREPSTR POP
+"$1$2" GREPSUB plyrs =
+60 24 SETALARM 120 ME SETALARM
+} CHATSTR "^;ü4([0-9]+)-([0-9]+)$" GREPSTR ref AND IF
+{ { "$1$2" GREPSUB plyrs =
+WHOCHAT WHONAME " has left the game." & ROOMMSG
+{ 1 ME SETALARM } "$2" GREPSUB "" == IF
+} plyrs "^(.*)-" WHOCHAT ITOA "-(.*)$" & & GREPSTR IF
+} CHATSTR ";ü6" == ref AND IF
+}
+ON ALARM { plyrs GLOBAL
+plyrs "^-([0-9]+)-(.*)$" GREPSTR POP
+"$1" GREPSUB cp = "$2" GREPSUB oth =
+{ oth GREPSUB plyrs = plyrs "^-([0-9]+)-(.*)$" GREPSTR POP
+"$1" GREPSUB cp = "$2" GREPSUB oth =
+} { cp ATOI WHONAME "." GREPSTR NOT plyrs "" == NOT AND } WHILE
+{ "@" cp ATOI WHOPOS ITOA SWAP ITOA " " & SWAP & & cp ATOI WHONAME " is up!" & & ROOMMSG
+";ü3" cp & cp ATOI PRIVATEMSG
+oth "-" & cp & "-" & plyrs =
+}
+{ 30 24 SETALARM
+} plyrs "" == NOT IFELSE
+}
+ON LEAVE { ";ü6" SAY }
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 26
+		NAME "Roll"
+		DONTMOVEHERE
+		OUTLINE 251,139  314,139  314,187  251,187
+		LOC 283,163
+		PICTS 13,173,16 13,208,16 13,243,16 1,0,0 ENDPICTS
+		SCRIPT
+ON ENTER {
+{ DUP GLOBAL 0 SWAP =
+} [ ref rollt crv mysc ut yhtz plyrs ckbxs myturn co ] FOREACH
+}
+ON SELECT { ref GLOBAL ad GLOBAL rollt GLOBAL crv GLOBAL myturn GLOBAL
+{ "" ad = 1 25 SETALARM }
+{ { { ME GETSPOTSTATE 1 + ME SETSPOTSTATE
+6 rollt = 0 crv =
+1 ME SETALARM
+}ME GETSPOTSTATE 3 < IF
+} myturn IF
+} ref ad ".." GREPSTR AND IFELSE
+}
+ON INCHAT {
+mysc GLOBAL ckbxs GLOBAL ut GLOBAL yhtz GLOBAL
+rollt GLOBAL myturn GLOBAL co GLOBAL btt GLOBAL
+{ { 0 SWAP SETSPOTSTATE } [ 6 7 8 9 10 ] FOREACH
+1 myturn = 11 sp = ckbxs tckbxs =
+{ tckbxs DUP 2 / 2 * - sp SETSPOTSTATE
+2 tckbxs /= sp ++
+} { sp 23 < } WHILE
+{ 1 23 SETSPOTSTATE
+{ yhtz 23 SETSPOTSTATE } yhtz 1 > IF
+}
+{ 0 23 SETSPOTSTATE } yhtz IFELSE
+0 ME SETSPOTSTATE 0 crv = 0 co =
+{ 0 SWAP SETSPOTSTATE } [ 1 2 3 4 5 ] FOREACH
+1 btt =
+} ";ü3" WHOME ITOA & CHATSTR == IF
+}
+ON ALARM { rollt GLOBAL dd GLOBAL dt GLOBAL
+crv GLOBAL 0 crv = co GLOBAL 0 co =
+{ ")dice2" SAY } rollt 6 == IF
+{ 0 cr = rollt --
+{ cr ++
+{ 7 rollt cr + DUP 3 / 3 * - + cr SETSPOTSTATE
+} cr 5 + GETSPOTSTATE NOT IF
+} { cr 5 < } WHILE
+30 ME SETALARM
+}
+{ 1 27 SETALARM
+} rollt IFELSE
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 27
+		NAME "Quit"
+		DONTMOVEHERE
+		OUTLINE 418,107  497,107  497,139  418,139
+		LOC 459,122
+		SCRIPT
+ON SELECT { ref GLOBAL ";ü6" SAY
+{ { DUP GLOBAL 0 SWAP =
+} [ rollt crv mysc ut yhtz ckbxs myturn co btt ] FOREACH
+}
+{";ü5" WHOME PRIVATEMSG } ref IFELSE
+}
+ON ALARM { dt GLOBAL dd GLOBAL
+0 dt = [ 0 0 0 0 0 0 ] dd =
+{ dc = dc 5 + GETSPOTSTATE lck =
+{ 6 RANDOM 1 + dv = dv dc SETSPOTSTATE }
+{ dc GETSPOTSTATE dv = } lck NOT IFELSE
+dv dt += dd dv 1 - GET 1 + dd dv 1 - PUT
+} [ 1 2 3 4 5 ] FOREACH
+"[ " { ITOA + " " + } dd FOREACH
+" ]" & dd =
+{ "@105,268 )applause !YAHTZEE!!" ROOMMSG
+btt GLOBAL 0 btt =
+} dd "5" SUBSTR IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 28
+		NAME "Instructions"
+		DONTMOVEHERE
+		OUTLINE 416,58  497,58  497,91  416,91
+		LOC 457,75
+		SCRIPT
+ON SELECT {
+"Instructions are in your log" STATUSMSG
+"To start a Yahtzee game, one person clicks on the start game button and becomes the referee." LOGMSG
+"Everyone who wants to play- including the referee- clicks on the Play button to join the game." LOGMSG
+"When everyone has joined, the referee clicks the Roll button to start play." LOGMSG
+"Anyone can join at any time by clicking play." LOGMSG
+"Anyone who wants to quit can click the quit button to do so." LOGMSG
+"Anyone who leaves the room automatically quits!" LOGMSG
+"Referees- if the player whose turn it is is dead, not there, or for whatever reason, say \x22remove player\x22 to drop them from the game." LOGMSG
+"If the referee leaves the room, the game is over!" LOGMSG
+"Click on the start game button to reset the game if that happens." LOGMSG
+"When play starts, the person whose turn it is clicks roll to roll for the first time and get their dice." LOGMSG
+"You lock and unlock the dice by clicking on them, locked dice are marked." LOGMSG
+"Click on the score sheet in the lighter green box you want to score in, or click roll up to twice more." LOGMSG
+"When you click on the score sheet, it tells you what you'll score with that option. If you like it, click Play to score that and finish your turn." LOGMSG
+"Scoring YAHTZEES- you score your first yahtzee the same way you score other scores, by clicking on yahtzee and then play. Score Yahtzee bonuses automatically by first clicking on Yahtzee when you roll one." LOGMSG
+"When someone fills out their score card, they automatically give their final score." LOGMSG
+"Stick around after you're through- the referee remembers the highest score, and will announce it when everyone finishes!" LOGMSG
+"Players can click play to rejoin an ongoing game after they finish. In that case the game continues until everyone either quits or finishes their game." LOGMSG
+"NOTE: it is highly recommended that the referee have the new Cynthonic client!" LOGMSG
+}
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		LOCKABLE
+		ID 44
+		DONTMOVEHERE
+		OUTLINE 487,6  507,6  507,25  487,25
+		LOC 497,15
+		PICTS 17,0,0 18,0,0 ENDPICTS
+		SCRIPT
+ON ENTER {
+"@500,10 Type \"Lock\" or \"Unlock\" to open or close the room" LOCALMSG }
+ON OUTCHAT {
+{ "Door Locked" statusmsg
+ME LOCK
+"" CHATSTR = } "lock" CHATSTR == IF
+{  "Door Unlocked" statusmsg
+ME UNLOCK
+"" CHATSTR = } "unlock" CHATSTR == IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	NAVAREA
+		ID 31
+		OUTLINE 4,194  507,193  506,381  3,380
+		LOC 131,281
+		ENDNAVAREA
+	ENDROOM
+
+
+ROOM
+	ID 92
+	NAME "NIGHT and DAY"
+	PICT "day-room.jpg"
+	PICTURE ID 1 NAME "onep.gif" TRANSCOLOR 0 ENDPICTURE
+	PICTURE ID 2 NAME "night-room.jpg" ENDPICTURE
+	SPOT
+		ID 2
+		OUTLINE 451,39  481,39  481,70  432,65
+		LOC 255,192
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON ENTER { 0 ME SETSPOTSTATELOCAL
+"Say 'day' or 'night' to change the time of day." LOCALMSG }
+ON OUTCHAT {
+{ 0 ME SETSPOTSTATELOCAL } "day" CHATSTR == IF
+{ 1 ME SETSPOTSTATELOCAL } "night" CHATSTR == IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	ENDROOM
+
+
+ROOM
+	ID 91
+	DROPZONE
+	NAME "Links room"
+	PICT "aliroom1.jpg"
+	ARTIST "www.CynthonicKaroniser.net"
+	SPOT
+		ID 1
+		NAME "CynthonicKaroniser link"
+		DONTMOVEHERE
+		SHOWNAME
+		OUTLINE 67,7  153,8  154,22  67,22
+		LOC 111,7
+		SCRIPT
+ON SELECT { "Connecting to: Cynthonic Karoniser" LOGMSG
+{ "http://www.CynthonicKaroniser.net" NETGOTO } 15 ALARMEXEC }
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 2
+		NAME "Digital Exposure"
+		DONTMOVEHERE
+		SHOWNAME
+		DEST 100
+		OUTLINE 362,28  446,28  448,43  360,43
+		LOC 404,29
+		SCRIPT
+ON SELECT
+{"Cynthonic://digital-x.net" NETGOTO}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 3
+		NAME "Avatar Heaven"
+		DONTMOVEHERE
+		SHOWNAME
+		OUTLINE 366,7  448,7  446,19  368,19
+		LOC 406,7
+		SCRIPT
+ON SELECT
+{"Cynthonic://avheaven.net" NETGOTO}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 4
+		NAME "The Farm"
+		DONTMOVEHERE
+		SHOWNAME
+		DEST 89
+		OUTLINE 379,53  432,53  432,67  377,67
+		LOC 406,53
+		SCRIPT
+ON SELECT
+{"Cynthonic://farm.CynthonicKaroniser.net:9998" NETGOTO}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 5
+		NAME "Smurfapalooza"
+		DONTMOVEHERE
+		SHOWNAME
+		OUTLINE 364,74  447,74  446,89  363,89
+		LOC 404,75
+		SCRIPT
+ON SELECT
+{"Cynthonic://smurf.thepserver.com" NETGOTO}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 6
+		NAME "How to use this room"
+		DONTMOVEHERE
+		SHOWNAME
+		OUTLINE 53,28  175,29  170,44  53,44
+		LOC 112,30
+		SCRIPT
+ON SELECT
+{"http://www.CynthonicKaroniser.net/v1/login/linkroom.htm" NETGOTO}
+		ENDSCRIPT
+		ENDSPOT
+	ENDROOM
+
+
+ROOM
+	ID 90
+	DROPZONE
+	NAME "Game Room"
+	PICT "gameroom1.jpg"
+	ARTIST "www.CynthonicKaroniser.net"
+	SPOT
+		ID 1
+		NAME "CynthonicKaroniser link"
+		DONTMOVEHERE
+		OUTLINE 399,1  510,1  511,11  399,11
+		LOC 172,193
+		SCRIPT
+ON SELECT { "Connecting to: Cynthonic Karoniser" LOGMSG
+{ "http://www.CynthonicKaroniser.net" NETGOTO } 15 ALARMEXEC }
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 3
+		NAME "Help Link"
+		DONTMOVEHERE
+		OUTLINE 456,323  488,323  488,345  456,345
+		LOC 363,379
+		SCRIPT
+ON SELECT { "Connecting to: Cynthonic Karoniser" LOGMSG
+{ "http://www.CynthonicKaroniser.net" NETGOTO } 15 ALARMEXEC }
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		ID 4
+		NAME "Tag"
+		DONTMOVEHERE
+		DEST 900
+		OUTLINE 434,163  487,163  487,182  434,182
+		LOC 359,259
+		ENDDOOR
+	DOOR
+		ID 5
+		NAME "YahtZee"
+		DONTMOVEHERE
+		DEST 16243
+		OUTLINE 431,236  483,236  483,254  431,254
+		LOC 355,332
+		ENDDOOR
+	DOOR
+		ID 6
+		NAME "Gridlock"
+		DONTMOVEHERE
+		DEST 1620
+		OUTLINE 432,201  485,201  485,222  432,222
+		LOC 357,220
+		ENDDOOR
+	ENDROOM
+
+
+ROOM
+	ID 900
+	NAME "\D0iGi-ZAP! START"
+	PICT "digizap.jpg"
+	DOOR
+		ID 1
+		DONTMOVEHERE
+		DEST 901
+		OUTLINE 425,337  499,337  499,380  425,380
+		LOC 371,284
+		ENDDOOR
+	SPOT
+		ID 2
+		DONTMOVEHERE
+		OUTLINE 12,340  84,340  84,379  12,379
+		LOC 140,283
+		SCRIPT
+ON SELECT
+{"Say tag to tag someone" LOCALMSG}
+ON LEAVE
+ {
+{ CLEARLOOSEPROPS PAINTCLEAR } NBRROOMUSERS 2 < IF }
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 3
+		DONTMOVEHERE
+		OUTLINE 84,341  159,341  159,379  84,379
+		LOC 212,283
+		SCRIPT
+ON SELECT {
+[
+"1044400317 1044400323 1044400373 1044400378 1044400383 1044400391"
+"1044399807 1044399822 1044399817 1044399831 1044399839 1044399845"
+"1044399670 1044399674 1044399678 1044399683 1044399689 1044399708 1044399793"
+"1044400469 1044400474 1044400481 1044400490 1044400494 1044400500 1044400509"
+"1044400007 1044400013 1044400120 1044400165 1044400174 1044400183 1044400190 1044400245"
+"1044400266 1044400272 1044400278 1044399488 1044400285 1044400290 1044400298 1044400306"
+"1044400513 1044400518 1044400526 1044400532 1044400538 1044400543 1044400548 1044400553"
+"1044399571 1044399583 1044399593 1044399604 1044399611 1044399616 1044399642 1044399654"
+"1044399799 1044399793 1044399708 1044399689 1044399683 1044399678 1044399674 1044399670"
+"1044399902 1044399892 1044399888 1044399883 1044399878 1044399871 1044399863 1044399854 1044399850"
+"1044399907 1044399912 1044399917 1044399976 1044399981 1044399986 1044399993 1044399997 1044400002"
+"1044400401 1044400397 1044400412 1044400417 1044400432 1044400441 1044400446 1044400453 1044400463"
+ ]
+ thearray =
+thearray length noarray =
+x1 GLOBAL
+"Avatars: row " 1 x1 + itoa + "/" + noarray itoa + logmsg thearray x1 get
+xpropo=
+1 x1 +=
+{ 0 x1 = } 1 x1 + noarray > IF
+"[" xpropo + "] SETPROPS" + xpropo =
+xpropo STRTOATOM EXEC
+}
+		ENDSCRIPT
+		ENDSPOT
+	ENDROOM
+
+
+ROOM
+	ID 1620
+	NOPAINTING
+	NOCYBORGS
+	NAME "\D0iGi - Gridlock"
+	PICT "degridlock.jpg"
+	ARTIST "Foxy & Tandika"
+	PICTURE ID 1 NAME "bn.gif" TRANSCOLOR 0 ENDPICTURE
+	PICTURE ID 2 NAME "wn.gif" TRANSCOLOR 0 ENDPICTURE
+	SPOT
+		ID 1
+		DONTMOVEHERE
+		OUTLINE 31,145  70,145  70,186  31,185
+		LOC 51,165
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 2
+		DONTMOVEHERE
+		OUTLINE 74,144  113,144  114,183  74,183
+		LOC 94,163
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 3
+		DONTMOVEHERE
+		OUTLINE 116,143  154,143  156,184  116,183
+		LOC 137,164
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 4
+		DONTMOVEHERE
+		OUTLINE 158,144  201,145  199,184  158,181
+		LOC 178,162
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 5
+		DONTMOVEHERE
+		OUTLINE 202,144  244,144  245,185  202,184
+		LOC 223,164
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 6
+		DONTMOVEHERE
+		OUTLINE 29,185  71,185  70,224  31,224
+		LOC 50,204
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 7
+		DONTMOVEHERE
+		OUTLINE 71,185  112,184  112,225  72,225
+		LOC 92,204
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 8
+		DONTMOVEHERE
+		OUTLINE 115,185  155,184  154,224  116,224
+		LOC 137,204
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 9
+		DONTMOVEHERE
+		OUTLINE 158,184  196,182  198,222  158,224
+		LOC 177,204
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 10
+		DONTMOVEHERE
+		OUTLINE 201,184  244,184  243,224  200,223
+		LOC 223,204
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 11
+		DONTMOVEHERE
+		OUTLINE 30,225  71,225  70,267  29,267
+		LOC 50,244
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 12
+		DONTMOVEHERE
+		OUTLINE 73,226  110,226  111,264  71,263
+		LOC 90,244
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 13
+		DONTMOVEHERE
+		OUTLINE 114,227  154,226  154,265  116,264
+		LOC 135,245
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 14
+		DONTMOVEHERE
+		OUTLINE 159,226  199,226  198,266  159,264
+		LOC 179,245
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 15
+		DONTMOVEHERE
+		OUTLINE 201,227  240,225  244,265  201,264
+		LOC 222,245
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 16
+		DONTMOVEHERE
+		OUTLINE 30,267  69,265  68,304  30,305
+		LOC 49,286
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 17
+		DONTMOVEHERE
+		OUTLINE 75,269  114,268  113,305  75,305
+		LOC 93,286
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 18
+		DONTMOVEHERE
+		OUTLINE 117,265  154,265  154,307  117,306
+		LOC 137,286
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 20
+		DONTMOVEHERE
+		OUTLINE 201,267  240,263  239,304  205,303
+		LOC 222,284
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 21
+		DONTMOVEHERE
+		OUTLINE 29,308  69,306  69,347  30,347
+		LOC 48,326
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 22
+		DONTMOVEHERE
+		OUTLINE 73,306  112,303  114,347  72,347
+		LOC 93,326
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 23
+		DONTMOVEHERE
+		OUTLINE 118,307  156,307  155,346  118,346
+		LOC 137,327
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 24
+		DONTMOVEHERE
+		OUTLINE 159,309  199,306  196,349  160,347
+		LOC 178,327
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 25
+		DONTMOVEHERE
+		OUTLINE 202,307  239,306  240,349  202,349
+		LOC 220,327
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 19
+		DONTMOVEHERE
+		OUTLINE 158,266  198,265  199,305  161,305
+		LOC 179,286
+		PICTS 1,0,0 2,0,0 ENDPICTS
+		SCRIPT
+ON SELECT{sel GLOBAL ME sel = 26 SELECT}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 26
+		OUTLINE 8,39  25,39  27,56  8,56
+		LOC 17,47
+		SCRIPT
+ON ENTER {cur GLOBAL 13 cur =
+0 ME SETSPOTSTATELOCAL
+{cr ++ cr SETSPOTSTATELOCAL}
+[1 1 1 1 1 1 1 1 1 0 1 1 2 0 0 1 0 0 0 0 0 0 0 0 0] FOREACH
+"Welcome to Gridlock! Script by Foxy" STATUSMSG
+}
+ON SELECT{sel GLOBAL cur GLOBAL
+{sel a = cur b =
+{b c = a b = c a = } b a < IF
+a 1 - 5 / 5 * su = su a -= su b -=
+{a -- b -- } {a 1 == NOT b 6 == NOT AND b 11 == NOT AND} WHILE
+{sel GETSPOTSTATE cur SETSPOTSTATELOCAL
+ME GETSPOTSTATE 1 + ME SETSPOTSTATELOCAL
+2 sel SETSPOTSTATELOCAL sel cur =
+{0 win =
+{GETSPOTSTATE win +=
+}[1 2 3 4 5 6 7 8 9 11 12 16] FOREACH
+{ "!)applause " USERNAME + " has solved the Gridlock in " +
+ME GETSPOTSTATE ITOA + " moves!" + ROOMMSG
+0 ME SETSPOTSTATELOCAL 0 cr =
+{cr ++ cr SETSPOTSTATELOCAL}
+[1 1 1 1 1 1 1 1 1 0 1 1 2 0 0 1 0 0 0 0 0 0 0 0 0] FOREACH
+} 0 win == IF
+} 13 cur == IF
+}a 1 == b 8 == b 12 == OR AND
+a 2 == b 11 == AND OR
+a 3 == b 6 == AND OR
+IF
+}cur sel == NOT IF}
+ON LEAVE {
+{ CLEARLOOSEPROPS PAINTCLEAR } NBRROOMUSERS 2 < IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	ENDROOM
+
+
+ROOM
+	ID 901
+	PRIVATE
+	NOCYBORGS
+	HIDDEN
+	NOGUESTS
+	NAME "\01ace-ZAP!"
+	PICT "1.gif"
+	SPOT
+		ID 2
+		NAME "Digi-ZAP script"
+		DONTMOVEHERE
+		OUTLINE 3,333  510,333  510,382  3,382
+		LOC 137,379
+		SCRIPT
+        SCRIPT
+ON OUTCHAT {
+{
+")no !TAG!" MOUSEPOS SAYAT
+0 255 0 pencolor
+4 pensize
+whome whopos mousepos line
+paintclear
+"" CHATSTR =
+} CHATSTR "tag" == IF
+{ CLEARLOOSEPROPS PAINTCLEAR "" CHATSTR = } CHATSTR "clean" == IF
+}
+ON INCHAT {
+{
+{
+{ "@" posx itoa & "," & posy itoa & "!" & WHOCHAT WHONAME & " got me!!" & ROOMMSG
+";you got me" WHOCHAT PRIVATEMSG
+902 GOTOROOM
+} "$3" GREPSUB "TAG" SUBSTR IF
+} "$1" GREPSUB ATOI POSX - dup 40 < SWAP -40 > AND
+"$2" GREPSUB ATOI POSY - dup 40 < swap -40 > AND AND IF
+} CHATSTR "@(.*),(.*) (.*)" GREPSTR WHOCHAT WHOME == NOT AND IF
+{ laserscore global laserscore ++
+"You got " whochat whoname & " and now have " & laserscore itoa & " point(s)!" & localmsg
+"You got " whochat whoname & " and now have " & laserscore itoa & " point(s)!" & statusmsg
+} CHATSTR ";you got me" == WHOCHAT WHOME == NOT AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 1
+		NAME "web link"
+		DONTMOVEHERE
+		OUTLINE 15,342  81,342  81,377  15,377
+		LOC 143,281
+		SCRIPT
+ON SELECT
+{"Say tag to tag someone" LOCALMSG}
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		ID 3
+		NAME "EXIT"
+		DEST 900
+		OUTLINE 430,343  497,343  497,376  430,376
+		LOC 369,280
+		ENDDOOR
+	SPOT
+		ID 4
+		NAME "prop generator"
+		DONTMOVEHERE
+		OUTLINE 85,342  152,342  152,378  85,378
+		LOC 213,282
+		SCRIPT
+ON SELECT {
+[
+"1044400557 1044400562 1044400566 1044400570 1044400575 1044400581"
+"1044400317 1044400323 1044400373 1044400378 1044400383 1044400391"
+"1044399807 1044399822 1044399817 1044399831 1044399839 1044399845"
+"1044399670 1044399674 1044399678 1044399683 1044399689 1044399708 1044399793"
+"1044400469 1044400474 1044400481 1044400490 1044400494 1044400500 1044400509"
+"1044400007 1044400013 1044400120 1044400165 1044400174 1044400183 1044400190 1044400245"
+"1044400266 1044400272 1044400278 1044399488 1044400285 1044400290 1044400298 1044400306"
+"1044400513 1044400518 1044400526 1044400532 1044400538 1044400543 1044400548 1044400553"
+"1044399571 1044399583 1044399593 1044399604 1044399611 1044399616 1044399642 1044399654"
+"1044399799 1044399793 1044399708 1044399689 1044399683 1044399678 1044399674 1044399670"
+"1044399850 1044399854 1044399863 1044399871 1044399878 1044399883 1044399888 1044399892"
+"1044399902 1044399892 1044399888 1044399883 1044399878 1044399871 1044399863 1044399854 1044399850"
+"1044399907 1044399912 1044399917 1044399976 1044399981 1044399986 1044399993 1044399997 1044400002"
+"1044399907 1044399912 1044399917 1044399976 1044399981 1044399986 1044399993 1044399997 1044400002"
+"1044400401 1044400397 1044400412 1044400417 1044400432 1044400441 1044400446 1044400453 1044400463"
+ ]
+ thearray =
+thearray length noarray =
+x1 GLOBAL
+"Avatars: row " 1 x1 + itoa + "/" + noarray itoa + logmsg thearray x1 get
+xpropo=
+1 x1 +=
+{ 0 x1 = } 1 x1 + noarray > IF
+"[" xpropo + "] SETPROPS" + xpropo =
+xpropo STRTOATOM EXEC
+}
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		ID 5
+		DEST 903
+		OUTLINE 30,111  45,116  80,218  30,218
+		LOC 158,207
+		ENDDOOR
+	DOOR
+		ID 6
+		DEST 904
+		OUTLINE 471,161  483,135  483,217  451,217
+		LOC 352,200
+		SCRIPT
+ON LEAVE
+ {
+{ CLEARLOOSEPROPS PAINTCLEAR } NBRROOMUSERS 2 < IF }
+		ENDSCRIPT
+		ENDDOOR
+	DOOR
+		ID 7
+		DEST 902
+		OUTLINE 226,166  309,166  309,212  226,212
+		LOC 290,193
+		ENDDOOR
+	ENDROOM
+
+
+ROOM
+	ID 902
+	PRIVATE
+	NOCYBORGS
+	HIDDEN
+	NOGUESTS
+	NAME "\01ace-ZAP!"
+	PICT "2.gif"
+	SPOT
+		ID 2
+		NAME "Digi-ZAP script"
+		DONTMOVEHERE
+		OUTLINE 4,323  508,323  508,380  4,380
+		LOC 167,196
+		SCRIPT
+        SCRIPT
+ON OUTCHAT {
+{
+")no !TAG!" MOUSEPOS SAYAT
+0 255 0 pencolor
+4 pensize
+whome whopos mousepos line
+paintclear
+"" CHATSTR =
+} CHATSTR "tag" == IF
+{ CLEARLOOSEPROPS PAINTCLEAR "" CHATSTR = } CHATSTR "clean" == IF
+}
+ON INCHAT {
+{
+{
+{ "@" posx itoa & "," & posy itoa & "!" & WHOCHAT WHONAME & " got me!!" & ROOMMSG
+";you got me" WHOCHAT PRIVATEMSG
+903 GOTOROOM
+} "$3" GREPSUB "TAG" SUBSTR IF
+} "$1" GREPSUB ATOI POSX - dup 40 < SWAP -40 > AND
+"$2" GREPSUB ATOI POSY - dup 40 < swap -40 > AND AND IF
+} CHATSTR "@(.*),(.*) (.*)" GREPSTR WHOCHAT WHOME == NOT AND IF
+{ laserscore global laserscore ++
+"You got " whochat whoname & " and now have " & laserscore itoa & " point(s)!" & localmsg
+"You got " whochat whoname & " and now have " & laserscore itoa & " point(s)!" & statusmsg
+} CHATSTR ";you got me" == WHOCHAT WHOME == NOT AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 1
+		NAME "web link"
+		DONTMOVEHERE
+		OUTLINE 15,342  81,342  81,377  15,377
+		LOC 143,281
+		SCRIPT
+ON SELECT
+{"http://www.CynthonicKaroniser.net/v1/login/" NETGOTO}
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		ID 3
+		NAME "EXIT"
+		DEST 900
+		OUTLINE 430,343  497,343  497,376  430,376
+		LOC 369,280
+		ENDDOOR
+	SPOT
+		ID 4
+		NAME "prop generator"
+		DONTMOVEHERE
+		OUTLINE 85,342  152,342  152,378  85,378
+		LOC 213,282
+		SCRIPT
+ON SELECT {
+[
+"1044400557 1044400562 1044400566 1044400570 1044400575 1044400581"
+"1044400317 1044400323 1044400373 1044400378 1044400383 1044400391"
+"1044399807 1044399822 1044399817 1044399831 1044399839 1044399845"
+"1044399670 1044399674 1044399678 1044399683 1044399689 1044399708 1044399793"
+"1044400469 1044400474 1044400481 1044400490 1044400494 1044400500 1044400509"
+"1044400007 1044400013 1044400120 1044400165 1044400174 1044400183 1044400190 1044400245"
+"1044400266 1044400272 1044400278 1044399488 1044400285 1044400290 1044400298 1044400306"
+"1044400513 1044400518 1044400526 1044400532 1044400538 1044400543 1044400548 1044400553"
+"1044399571 1044399583 1044399593 1044399604 1044399611 1044399616 1044399642 1044399654"
+"1044399799 1044399793 1044399708 1044399689 1044399683 1044399678 1044399674 1044399670"
+"1044399850 1044399854 1044399863 1044399871 1044399878 1044399883 1044399888 1044399892"
+"1044399902 1044399892 1044399888 1044399883 1044399878 1044399871 1044399863 1044399854 1044399850"
+"1044399907 1044399912 1044399917 1044399976 1044399981 1044399986 1044399993 1044399997 1044400002"
+"1044399907 1044399912 1044399917 1044399976 1044399981 1044399986 1044399993 1044399997 1044400002"
+"1044400401 1044400397 1044400412 1044400417 1044400432 1044400441 1044400446 1044400453 1044400463"
+ ]
+ thearray =
+thearray length noarray =
+x1 GLOBAL
+"Avatars: row " 1 x1 + itoa + "/" + noarray itoa + logmsg thearray x1 get
+xpropo=
+1 x1 +=
+{ 0 x1 = } 1 x1 + noarray > IF
+"[" xpropo + "] SETPROPS" + xpropo =
+xpropo STRTOATOM EXEC
+}
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		ID 5
+		DEST 909
+		OUTLINE 30,146  59,154  64,169  30,188
+		LOC 184,114
+		ENDDOOR
+	DOOR
+		ID 6
+		DEST 901
+		OUTLINE 168,307  399,307  415,321  158,321
+		LOC 256,192
+		ENDDOOR
+	DOOR
+		ID 7
+		DEST 908
+		OUTLINE 214,184  241,171  264,202  212,202
+		LOC 319,120
+		ENDDOOR
+	ENDROOM
+
+
+ROOM
+	ID 903
+	PRIVATE
+	NOCYBORGS
+	HIDDEN
+	NOGUESTS
+	NAME "\01ace-ZAP!"
+	PICT "3.gif"
+	SPOT
+		ID 2
+		NAME "Digi-ZAP script"
+		DONTMOVEHERE
+		OUTLINE 3,328  508,328  508,381  3,381
+		LOC 150,141
+		SCRIPT
+        SCRIPT
+ON OUTCHAT {
+{
+")no !TAG!" MOUSEPOS SAYAT
+0 255 0 pencolor
+4 pensize
+whome whopos mousepos line
+paintclear
+"" CHATSTR =
+} CHATSTR "tag" == IF
+{ CLEARLOOSEPROPS PAINTCLEAR "" CHATSTR = } CHATSTR "clean" == IF
+}
+ON INCHAT {
+{
+{
+{ "@" posx itoa & "," & posy itoa & "!" & WHOCHAT WHONAME & " got me!!" & ROOMMSG
+";you got me" WHOCHAT PRIVATEMSG
+904 GOTOROOM
+} "$3" GREPSUB "TAG" SUBSTR IF
+} "$1" GREPSUB ATOI POSX - dup 40 < SWAP -40 > AND
+"$2" GREPSUB ATOI POSY - dup 40 < swap -40 > AND AND IF
+} CHATSTR "@(.*),(.*) (.*)" GREPSTR WHOCHAT WHOME == NOT AND IF
+{ laserscore global laserscore ++
+"You got " whochat whoname & " and now have " & laserscore itoa & " point(s)!" & localmsg
+"You got " whochat whoname & " and now have " & laserscore itoa & " point(s)!" & statusmsg
+} CHATSTR ";you got me" == WHOCHAT WHOME == NOT AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 1
+		NAME "web link"
+		DONTMOVEHERE
+		OUTLINE 15,342  81,342  81,377  15,377
+		LOC 143,281
+		SCRIPT
+ON SELECT
+{"http://www.CynthonicKaroniser.net/v1/login/" NETGOTO}
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		ID 3
+		NAME "EXIT"
+		DEST 900
+		OUTLINE 430,343  497,343  497,376  430,376
+		LOC 369,280
+		ENDDOOR
+	SPOT
+		ID 4
+		NAME "prop generator"
+		OUTLINE 85,342  152,342  152,378  85,378
+		LOC 213,282
+		SCRIPT
+ON SELECT {
+[
+"927166708 927166651 927166591 927166561 927166518 927166464"
+"926134233 926134232 926134231"
+ ]
+ thearray =
+thearray length noarray =
+x1 GLOBAL
+"Avatars: row " 1 x1 + itoa + "/" + noarray itoa + logmsg thearray x1 get
+xpropo=
+1 x1 +=
+{ 0 x1 = } 1 x1 + noarray > IF
+"[" xpropo + "] SETPROPS" + xpropo =
+xpropo STRTOATOM EXEC
+}
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		ID 5
+		DEST 909
+		OUTLINE 223,133  277,133  320,220  180,220
+		LOC 256,192
+		ENDDOOR
+	DOOR
+		ID 6
+		DEST 901
+		OUTLINE 25,231  76,282  43,296  25,306
+		LOC 153,209
+		ENDDOOR
+	ENDROOM
+
+
+ROOM
+	ID 904
+	PRIVATE
+	NOCYBORGS
+	HIDDEN
+	NOGUESTS
+	NAME "\01ace-ZAP!"
+	PICT "4.gif"
+	SPOT
+		ID 2
+		NAME "Digi-ZAP script"
+		DONTMOVEHERE
+		OUTLINE 3,326  510,326  510,382  3,382
+		LOC 136,198
+		SCRIPT
+        SCRIPT
+ON OUTCHAT {
+{
+")no !TAG!" MOUSEPOS SAYAT
+0 255 0 pencolor
+4 pensize
+whome whopos mousepos line
+paintclear
+"" CHATSTR =
+} CHATSTR "tag" == IF
+{ CLEARLOOSEPROPS PAINTCLEAR "" CHATSTR = } CHATSTR "clean" == IF
+}
+ON INCHAT {
+{
+{
+{ "@" posx itoa & "," & posy itoa & "!" & WHOCHAT WHONAME & " got me!!" & ROOMMSG
+";you got me" WHOCHAT PRIVATEMSG
+905 GOTOROOM
+} "$3" GREPSUB "TAG" SUBSTR IF
+} "$1" GREPSUB ATOI POSX - dup 40 < SWAP -40 > AND
+"$2" GREPSUB ATOI POSY - dup 40 < swap -40 > AND AND IF
+} CHATSTR "@(.*),(.*) (.*)" GREPSTR WHOCHAT WHOME == NOT AND IF
+{ laserscore global laserscore ++
+"You got " whochat whoname & " and now have " & laserscore itoa & " point(s)!" & localmsg
+"You got " whochat whoname & " and now have " & laserscore itoa & " point(s)!" & statusmsg
+} CHATSTR ";you got me" == WHOCHAT WHOME == NOT AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 1
+		NAME "web link"
+		DONTMOVEHERE
+		OUTLINE 15,342  81,342  81,377  15,377
+		LOC 143,281
+		SCRIPT
+ON SELECT
+{"http://www.CynthonicKaroniser.net/v1/login/" NETGOTO}
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		ID 3
+		NAME "EXIT"
+		DEST 900
+		OUTLINE 430,343  497,343  497,376  430,376
+		LOC 369,280
+		ENDDOOR
+	SPOT
+		ID 4
+		NAME "prop generator"
+		DONTMOVEHERE
+		OUTLINE 85,342  152,342  152,378  85,378
+		LOC 213,282
+		SCRIPT
+ON SELECT {
+[
+"927166708 927166651 927166591 927166561 927166518 927166464"
+"926134233 926134232 926134231"
+ ]
+ thearray =
+thearray length noarray =
+x1 GLOBAL
+"Avatars: row " 1 x1 + itoa + "/" + noarray itoa + logmsg thearray x1 get
+xpropo=
+1 x1 +=
+{ 0 x1 = } 1 x1 + noarray > IF
+"[" xpropo + "] SETPROPS" + xpropo =
+xpropo STRTOATOM EXEC
+}
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		ID 5
+		DEST 901
+		OUTLINE 403,245  485,245  485,299  430,283
+		LOC 357,203
+		ENDDOOR
+	DOOR
+		ID 6
+		DEST 907
+		OUTLINE 232,154  281,154  313,221  197,221
+		LOC 257,196
+		ENDDOOR
+	DOOR
+		ID 7
+		DEST 902
+		OUTLINE 15,267  31,299  64,323  15,323
+		LOC 143,227
+		ENDDOOR
+	ENDROOM
+
+
+ROOM
+	ID 905
+	PRIVATE
+	NOCYBORGS
+	HIDDEN
+	NOGUESTS
+	NAME "\01ace-ZAP!"
+	PICT "6.gif"
+	SPOT
+		ID 2
+		NAME "Digi-ZAP script"
+		DONTMOVEHERE
+		OUTLINE 3,329  508,329  508,381  3,381
+		LOC 136,197
+		SCRIPT
+        SCRIPT
+ON OUTCHAT {
+{
+")no !TAG!" MOUSEPOS SAYAT
+0 255 0 pencolor
+4 pensize
+whome whopos mousepos line
+paintclear
+"" CHATSTR =
+} CHATSTR "tag" == IF
+{ CLEARLOOSEPROPS PAINTCLEAR "" CHATSTR = } CHATSTR "clean" == IF
+}
+ON INCHAT {
+{
+{
+{ "@" posx itoa & "," & posy itoa & "!" & WHOCHAT WHONAME & " got me!!" & ROOMMSG
+";you got me" WHOCHAT PRIVATEMSG
+906 GOTOROOM
+} "$3" GREPSUB "TAG" SUBSTR IF
+} "$1" GREPSUB ATOI POSX - dup 40 < SWAP -40 > AND
+"$2" GREPSUB ATOI POSY - dup 40 < swap -40 > AND AND IF
+} CHATSTR "@(.*),(.*) (.*)" GREPSTR WHOCHAT WHOME == NOT AND IF
+{ laserscore global laserscore ++
+"You got " whochat whoname & " and now have " & laserscore itoa & " point(s)!" & localmsg
+"You got " whochat whoname & " and now have " & laserscore itoa & " point(s)!" & statusmsg
+} CHATSTR ";you got me" == WHOCHAT WHOME == NOT AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 1
+		NAME "web link"
+		DONTMOVEHERE
+		OUTLINE 15,342  81,342  81,377  15,377
+		LOC 143,281
+		SCRIPT
+ON SELECT
+{"http://www.CynthonicKaroniser.net/v1/login/" NETGOTO}
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		ID 3
+		NAME "EXIT"
+		DEST 900
+		OUTLINE 430,343  497,343  497,376  430,376
+		LOC 369,280
+		ENDDOOR
+	SPOT
+		ID 4
+		NAME "prop generator"
+		DONTMOVEHERE
+		OUTLINE 85,342  152,342  152,378  85,378
+		LOC 213,282
+		SCRIPT
+ON SELECT {
+[
+"927166708 927166651 927166591 927166561 927166518 927166464"
+"926134233 926134232 926134231"
+ ]
+ thearray =
+thearray length noarray =
+x1 GLOBAL
+"Avatars: row " 1 x1 + itoa + "/" + noarray itoa + logmsg thearray x1 get
+xpropo=
+1 x1 +=
+{ 0 x1 = } 1 x1 + noarray > IF
+"[" xpropo + "] SETPROPS" + xpropo =
+xpropo STRTOATOM EXEC
+}
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		ID 5
+		DEST 909
+		OUTLINE 166,134  177,152  177,202  131,202
+		LOC 258,191
+		ENDDOOR
+	DOOR
+		ID 6
+		DEST 907
+		OUTLINE 269,173  287,168  287,207  236,207
+		LOC 255,193
+		ENDDOOR
+	DOOR
+		ID 7
+		DEST 906
+		OUTLINE 437,267  486,267  486,300  437,300
+		LOC 358,204
+		ENDDOOR
+	ENDROOM
+
+
+ROOM
+	ID 906
+	PRIVATE
+	NOCYBORGS
+	HIDDEN
+	NOGUESTS
+	NAME "\01ace-ZAP!"
+	PICT "7.gif"
+	SPOT
+		ID 2
+		NAME "Digi-ZAP script"
+		DONTMOVEHERE
+		OUTLINE 2,326  509,326  509,383  2,383
+		LOC 135,199
+		SCRIPT
+        SCRIPT
+ON OUTCHAT {
+{
+")no !TAG!" MOUSEPOS SAYAT
+0 255 0 pencolor
+4 pensize
+whome whopos mousepos line
+paintclear
+"" CHATSTR =
+} CHATSTR "tag" == IF
+{ CLEARLOOSEPROPS PAINTCLEAR "" CHATSTR = } CHATSTR "clean" == IF
+}
+ON INCHAT {
+{
+{
+{ "@" posx itoa & "," & posy itoa & "!" & WHOCHAT WHONAME & " got me!!" & ROOMMSG
+";you got me" WHOCHAT PRIVATEMSG
+907 GOTOROOM
+} "$3" GREPSUB "TAG" SUBSTR IF
+} "$1" GREPSUB ATOI POSX - dup 40 < SWAP -40 > AND
+"$2" GREPSUB ATOI POSY - dup 40 < swap -40 > AND AND IF
+} CHATSTR "@(.*),(.*) (.*)" GREPSTR WHOCHAT WHOME == NOT AND IF
+{ laserscore global laserscore ++
+"You got " whochat whoname & " and now have " & laserscore itoa & " point(s)!" & localmsg
+"You got " whochat whoname & " and now have " & laserscore itoa & " point(s)!" & statusmsg
+} CHATSTR ";you got me" == WHOCHAT WHOME == NOT AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 1
+		NAME "web link"
+		DONTMOVEHERE
+		OUTLINE 15,342  81,342  81,377  15,377
+		LOC 143,281
+		SCRIPT
+ON SELECT
+{"http://www.CynthonicKaroniser.net/v1/login/" NETGOTO}
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		ID 3
+		NAME "EXIT"
+		DEST 900
+		OUTLINE 430,343  497,343  497,376  430,376
+		LOC 369,280
+		ENDDOOR
+	SPOT
+		ID 4
+		NAME "prop generator"
+		DONTMOVEHERE
+		OUTLINE 85,342  152,342  152,378  85,378
+		LOC 213,282
+		SCRIPT
+ON SELECT {
+[
+"927166708 927166651 927166591 927166561 927166518 927166464"
+"926134233 926134232 926134231"
+ ]
+ thearray =
+thearray length noarray =
+x1 GLOBAL
+"Avatars: row " 1 x1 + itoa + "/" + noarray itoa + logmsg thearray x1 get
+xpropo=
+1 x1 +=
+{ 0 x1 = } 1 x1 + noarray > IF
+"[" xpropo + "] SETPROPS" + xpropo =
+xpropo STRTOATOM EXEC
+}
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		ID 5
+		DEST 909
+		OUTLINE 208,129  312,130  315,226  207,226
+		LOC 334,210
+		ENDDOOR
+	DOOR
+		ID 6
+		DEST 905
+		OUTLINE 23,252  43,297  67,321  23,321
+		LOC 151,225
+		ENDDOOR
+	ENDROOM
+
+
+ROOM
+	ID 907
+	PRIVATE
+	NOCYBORGS
+	HIDDEN
+	NOGUESTS
+	NAME "\01ace-ZAP!"
+	PICT "9.gif"
+	SPOT
+		ID 2
+		NAME "Digi-ZAP script"
+		DONTMOVEHERE
+		OUTLINE 3,328  508,328  508,382  3,382
+		LOC 136,198
+		SCRIPT
+        SCRIPT
+ON OUTCHAT {
+{
+")no !TAG!" MOUSEPOS SAYAT
+0 255 0 pencolor
+4 pensize
+whome whopos mousepos line
+paintclear
+"" CHATSTR =
+} CHATSTR "tag" == IF
+{ CLEARLOOSEPROPS PAINTCLEAR "" CHATSTR = } CHATSTR "clean" == IF
+}
+ON INCHAT {
+{
+{
+{ "@" posx itoa & "," & posy itoa & "!" & WHOCHAT WHONAME & " got me!!" & ROOMMSG
+";you got me" WHOCHAT PRIVATEMSG
+908 GOTOROOM
+} "$3" GREPSUB "TAG" SUBSTR IF
+} "$1" GREPSUB ATOI POSX - dup 40 < SWAP -40 > AND
+"$2" GREPSUB ATOI POSY - dup 40 < swap -40 > AND AND IF
+} CHATSTR "@(.*),(.*) (.*)" GREPSTR WHOCHAT WHOME == NOT AND IF
+{ laserscore global laserscore ++
+"You got " whochat whoname & " and now have " & laserscore itoa & " point(s)!" & localmsg
+"You got " whochat whoname & " and now have " & laserscore itoa & " point(s)!" & statusmsg
+} CHATSTR ";you got me" == WHOCHAT WHOME == NOT AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 1
+		NAME "web link"
+		DONTMOVEHERE
+		OUTLINE 15,342  81,342  81,377  15,377
+		LOC 143,281
+		SCRIPT
+ON SELECT
+{"http://www.CynthonicKaroniser.net/v1/login/" NETGOTO}
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		ID 3
+		NAME "EXIT"
+		DEST 900
+		OUTLINE 430,343  497,343  497,376  430,376
+		LOC 369,280
+		ENDDOOR
+	SPOT
+		ID 4
+		NAME "prop generator"
+		DONTMOVEHERE
+		OUTLINE 85,342  152,342  152,378  85,378
+		LOC 213,282
+		SCRIPT
+ON SELECT {
+[
+"927166708 927166651 927166591 927166561 927166518 927166464"
+"926134233 926134232 926134231"
+ ]
+ thearray =
+thearray length noarray =
+x1 GLOBAL
+"Avatars: row " 1 x1 + itoa + "/" + noarray itoa + logmsg thearray x1 get
+xpropo=
+1 x1 +=
+{ 0 x1 = } 1 x1 + noarray > IF
+"[" xpropo + "] SETPROPS" + xpropo =
+xpropo STRTOATOM EXEC
+}
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		ID 5
+		DEST 901
+		OUTLINE 143,122  389,123  389,222  143,223
+		LOC 260,192
+		ENDDOOR
+	DOOR
+		ID 6
+		DEST 905
+		OUTLINE 12,278  29,309  61,325  12,325
+		LOC 140,229
+		ENDDOOR
+	ENDROOM
+
+
+ROOM
+	ID 908
+	PRIVATE
+	NOCYBORGS
+	HIDDEN
+	NOGUESTS
+	NAME "\01ace-ZAP!"
+	PICT "10.gif"
+	SPOT
+		ID 2
+		NAME "Digi-ZAP script"
+		DONTMOVEHERE
+		OUTLINE 3,324  510,324  510,381  3,381
+		LOC 136,197
+		SCRIPT
+        SCRIPT
+ON OUTCHAT {
+{
+")no !TAG!" MOUSEPOS SAYAT
+0 255 0 pencolor
+4 pensize
+whome whopos mousepos line
+paintclear
+"" CHATSTR =
+} CHATSTR "tag" == IF
+{ CLEARLOOSEPROPS PAINTCLEAR "" CHATSTR = } CHATSTR "clean" == IF
+}
+ON INCHAT {
+{
+{
+{ "@" posx itoa & "," & posy itoa & "!" & WHOCHAT WHONAME & " got me!!" & ROOMMSG
+";you got me" WHOCHAT PRIVATEMSG
+909 GOTOROOM
+} "$3" GREPSUB "TAG" SUBSTR IF
+} "$1" GREPSUB ATOI POSX - dup 40 < SWAP -40 > AND
+"$2" GREPSUB ATOI POSY - dup 40 < swap -40 > AND AND IF
+} CHATSTR "@(.*),(.*) (.*)" GREPSTR WHOCHAT WHOME == NOT AND IF
+{ laserscore global laserscore ++
+"You got " whochat whoname & " and now have " & laserscore itoa & " point(s)!" & localmsg
+"You got " whochat whoname & " and now have " & laserscore itoa & " point(s)!" & statusmsg
+} CHATSTR ";you got me" == WHOCHAT WHOME == NOT AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 1
+		NAME "web link"
+		DONTMOVEHERE
+		OUTLINE 15,342  81,342  81,377  15,377
+		LOC 143,281
+		SCRIPT
+ON SELECT
+{"http://www.CynthonicKaroniser.net/v1/login/" NETGOTO}
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		ID 3
+		NAME "EXIT"
+		DEST 900
+		OUTLINE 430,343  497,343  497,376  430,376
+		LOC 369,280
+		ENDDOOR
+	SPOT
+		ID 4
+		NAME "prop generator"
+		DONTMOVEHERE
+		OUTLINE 85,342  152,342  152,378  85,378
+		LOC 213,282
+		SCRIPT
+ON SELECT {
+[
+"927166708 927166651 927166591 927166561 927166518 927166464"
+"926134233 926134232 926134231"
+ ]
+ thearray =
+thearray length noarray =
+x1 GLOBAL
+"Avatars: row " 1 x1 + itoa + "/" + noarray itoa + logmsg thearray x1 get
+xpropo=
+1 x1 +=
+{ 0 x1 = } 1 x1 + noarray > IF
+"[" xpropo + "] SETPROPS" + xpropo =
+xpropo STRTOATOM EXEC
+}
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		ID 5
+		DEST 902
+		OUTLINE 457,156  484,156  484,259  457,259
+		LOC 356,163
+		ENDDOOR
+	DOOR
+		ID 6
+		DEST 909
+		OUTLINE 24,270  71,286  39,317  24,317
+		LOC 152,221
+		ENDDOOR
+	ENDROOM
+
+
+ROOM
+	ID 909
+	PRIVATE
+	NOCYBORGS
+	HIDDEN
+	NOGUESTS
+	NAME "\01ace-ZAP!"
+	PICT "13.gif"
+	SPOT
+		ID 2
+		NAME "Digi-ZAP script"
+		DONTMOVEHERE
+		OUTLINE 1,327  510,327  510,382  1,382
+		LOC 135,198
+		SCRIPT
+        SCRIPT
+ON OUTCHAT {
+{
+")no !TAG!" MOUSEPOS SAYAT
+0 255 0 pencolor
+4 pensize
+whome whopos mousepos line
+paintclear
+"" CHATSTR =
+} CHATSTR "tag" == IF
+{ CLEARLOOSEPROPS PAINTCLEAR "" CHATSTR = } CHATSTR "clean" == IF
+}
+ON INCHAT {
+{
+{
+{ "@" posx itoa & "," & posy itoa & "!" & WHOCHAT WHONAME & " got me!!" & ROOMMSG
+";you got me" WHOCHAT PRIVATEMSG
+901 GOTOROOM
+} "$3" GREPSUB "TAG" SUBSTR IF
+} "$1" GREPSUB ATOI POSX - dup 40 < SWAP -40 > AND
+"$2" GREPSUB ATOI POSY - dup 40 < swap -40 > AND AND IF
+} CHATSTR "@(.*),(.*) (.*)" GREPSTR WHOCHAT WHOME == NOT AND IF
+{ laserscore global laserscore ++
+"You got " whochat whoname & " and now have " & laserscore itoa & " point(s)!" & localmsg
+"You got " whochat whoname & " and now have " & laserscore itoa & " point(s)!" & statusmsg
+} CHATSTR ";you got me" == WHOCHAT WHOME == NOT AND IF
+}
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 1
+		NAME "web link"
+		DONTMOVEHERE
+		OUTLINE 15,342  81,342  81,377  15,377
+		LOC 143,281
+		SCRIPT
+ON SELECT
+{"http://www.CynthonicKaroniser.net/v1/login/" NETGOTO}
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		ID 3
+		NAME "EXIT"
+		DEST 900
+		OUTLINE 430,343  497,343  497,376  430,376
+		LOC 369,280
+		ENDDOOR
+	SPOT
+		ID 4
+		NAME "prop generator"
+		DONTMOVEHERE
+		OUTLINE 85,342  152,342  152,378  85,378
+		LOC 213,282
+		SCRIPT
+ON SELECT {
+[
+"927166708 927166651 927166591 927166561 927166518 927166464"
+"926134233 926134232 926134231"
+ ]
+ thearray =
+thearray length noarray =
+x1 GLOBAL
+"Avatars: row " 1 x1 + itoa + "/" + noarray itoa + logmsg thearray x1 get
+xpropo=
+1 x1 +=
+{ 0 x1 = } 1 x1 + noarray > IF
+"[" xpropo + "] SETPROPS" + xpropo =
+xpropo STRTOATOM EXEC
+}
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		ID 5
+		DEST 903
+		OUTLINE 474,296  488,268  488,319  454,319
+		LOC 360,223
+		ENDDOOR
+	DOOR
+		ID 6
+		DEST 901
+		OUTLINE 408,149  443,131  443,170  431,171
+		LOC 256,192
+		ENDDOOR
+	DOOR
+		ID 7
+		DEST 908
+		OUTLINE 17,232  31,263  50,282  17,282
+		LOC 145,186
+		ENDDOOR
+	DOOR
+		ID 8
+		DEST 906
+		OUTLINE 261,292  288,292  374,324  261,324
+		LOC 246,228
+		ENDDOOR
+	DOOR
+		ID 9
+		DEST 902
+		OUTLINE 342,201  356,188  375,219  333,219
+		LOC 256,192
+		ENDDOOR
+	ENDROOM
+
+
+ROOM
+	ID 101
+	DROPZONE
+	NAME "My Cynthonic Proproom 101"
+	PICT "gameroom1.jpg"
+	ARTIST "www.CynthonicKaroniser.net"
+	SPOT
+		ID 7
+		NAME "Avatars IDs"
+		DONTMOVEHERE
+		OUTLINE 400,2  509,2  509,383  400,383
+		LOC 381,98
+		SCRIPT
+ ;Door id 4 Stick in a corner somewhere
+;when you add avs, you have to leave and re-enter to see them
+ON ENTER { prar GLOBAL cpr GLOBAL -1 cpr =
+{  [
+[ 987845363 987845372 987845379 987845385 987845393 987845400 ]
+[ 987883375 987883382 987883390 987883397 987883414 987883423 ]
+;add avatar lines here
+] } prar DEF }
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 99
+		NAME "CynthonicKaroniser link"
+		DONTMOVEHERE
+		OUTLINE 406,0  511,0  512,15  406,15
+		LOC 381,0
+		SCRIPT
+ON SELECT { "Connecting to: Cynthonic Karoniser" LOGMSG
+{ "http://www.CynthonicKaroniser.net" NETGOTO } 15 ALARMEXEC }
+		ENDSCRIPT
+		ENDSPOT
+	DOOR
+		ID 3
+		NAME "Gridlock"
+		DONTMOVEHERE
+		DEST 1620
+		OUTLINE 432,200  486,200  486,222  432,222
+		LOC 358,251
+		ENDDOOR
+	DOOR
+		ID 1
+		NAME "Yahtzee"
+		DONTMOVEHERE
+		DEST 16243
+		OUTLINE 435,235  488,235  488,254  435,254
+		LOC 360,331
+		ENDDOOR
+	DOOR
+		ID 2
+		NAME "Tag"
+		DONTMOVEHERE
+		DEST 900
+		OUTLINE 435,163  488,163  488,184  435,184
+		LOC 360,182
+		ENDDOOR
+	DOOR
+		ID 6
+		OUTLINE 449,321  488,321  488,345  451,345
+		LOC 360,249
+		SCRIPT
+ON SELECT { "Connecting to: Cynthonic Karoniser" LOGMSG
+{ "http://www.CynthonicKaroniser.net" NETGOTO } 15 ALARMEXEC }
+		ENDSCRIPT
+		ENDDOOR
+	ENDROOM
+
+
+ROOM
+	ID 93
+	DROPZONE
+	NAME "Music Room"
+	PICT "juke1a.jpg"
+	ARTIST "www.CynthonicKaroniser.net"
+	SPOT
+		ID 1
+		NAME "Crocodile Rock"
+		DONTMOVEHERE
+		SHOWNAME
+		OUTLINE 147,199  233,200  234,214  147,214
+		LOC 191,199
+		SCRIPT
+ON SELECT
+ {
+{ MIDISTOP "crocrock.mid" SOUND "crocrock.mid" MIDIPLAY
+} DATETIME 0 > IF }
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 4
+		NAME "Axel F"
+		DONTMOVEHERE
+		SHOWNAME
+		DEST 89
+		OUTLINE 162,292  215,292  215,306  160,306
+		LOC 189,292
+		SCRIPT
+ON SELECT
+ {
+{ MIDISTOP "AXELF.MID" SOUND "AXELF.MID" MIDIPLAY
+} DATETIME 0 > IF }
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 5
+		NAME "Bond Theme"
+		DONTMOVEHERE
+		SHOWNAME
+		OUTLINE 150,337  233,337  232,352  149,352
+		LOC 190,338
+		SCRIPT
+ON SELECT
+ {
+{ MIDISTOP "bond.mid" SOUND "bond.mid" MIDIPLAY
+} DATETIME 0 > IF }
+		ENDSCRIPT
+		ENDSPOT
+	SPOT
+		ID 6
+		NAME "Abracada"
+		DONTMOVEHERE
+		SHOWNAME
+		OUTLINE 127,242  249,243  244,258  127,258
+		LOC 186,244
+		SCRIPT
+ON SELECT
+ {
+{ MIDISTOP "Abracada.mid" SOUND "Abracada.mid" MIDIPLAY
+} DATETIME 0 > IF }
+		ENDSCRIPT
+		ENDSPOT
+	ENDROOM
+
+
+ROOM
+	ID 94
+	NAME "The Bath Room"
+	PICT "bathroom.jpg"
+	ENDROOM
+
+
+ROOM
+	ID 95
+	NAME "Private Bedroom"
+	PICT "tech-bedroom.jpg"
+	ENDROOM
+
+
+ROOM
+	ID 96
+	NAME "Outside Chairs"
+	PICT "ytzyrmgr.jpg"
+	ENDROOM
+
+END
