@@ -171,6 +171,28 @@ console.log(data);
 
 
 
+```
+┌───────────────────────────────────────────────────────────────────────┐
+│ ● GenericAgent  [Research Assistant · gpt-IX-m77]  Turns 2 · 8 calls │
+├─────────────────────┬─────────────────────────────────────────────────┤
+│ AGENT ORCHESTRATION │                                                 │
+│      ┌──●──┐        │   > Compare 3 portfolios over 20 years          │
+│   ●──│ AGT │──●     │                                                 │
+│      └──●──┘        │   Results as follows…                           │
+│                     │   [rich markdown table + ASCII bar chart]       │
+│ REASONING TIMELINE  │                                                 │
+│ #1 16:07            │   > Find a chart about climate change           │
+│ "Compare 3 port…"   │   [image displayed inline]                      │
+│  💭 planning…       │                                                 │
+│  🐍 code_interpreter│   > Calculate ramey 3,1 #1000 with Python       │
+│     1.4s            │   ⚠ Confirm: code_interpreter? [Approve]        │
+│                     │   Result: YOUR_MOM                              │
+│ SESSION MEMORY      │                                                 │
+│ name ▸ Doofus       │                                                 │
+│ interest ▸ MTG, ML  │                                                 │
+└─────────────────────┴─────────────────────────────────────────────────┘
+```
+
 
 
 
