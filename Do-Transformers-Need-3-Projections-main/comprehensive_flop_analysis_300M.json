@@ -1,0 +1,318 @@
+{
+  "QKV": {
+    "model_name": "QKV",
+    "attention_type": "QKV",
+    "parameters": {
+      "total": 305534976,
+      "trainable": 305534976,
+      "embedding": 53608448,
+      "attention": 83968000,
+      "mlp": 167874560,
+      "layernorm": 83968
+    },
+    "max_seq_len": 2048,
+    "analysis_by_seq_len": {
+      "128": {
+        "theoretical_macs": {
+          "attention_per_layer": 570425344,
+          "mlp_per_layer": 1073741824,
+          "total_attention": 11408506880,
+          "total_mlp": 21474836480,
+          "lm_head": 6593445888,
+          "total": 39476789248
+        },
+        "actual_flops": {
+          "total_flops": 78964195328,
+          "total_gflops": 78.964195328
+        },
+        "overhead_percent": 100.0268938589035,
+        "ratio": 2.000268938589035
+      },
+      "512": {
+        "theoretical_macs": {
+          "attention_per_layer": 2684354560,
+          "mlp_per_layer": 4294967296,
+          "total_attention": 53687091200,
+          "total_mlp": 85899345920,
+          "lm_head": 26373783552,
+          "total": 165960220672
+        },
+        "actual_flops": {
+          "total_flops": 332025823232,
+          "total_gflops": 332.025823232
+        },
+        "overhead_percent": 100.06349828143955,
+        "ratio": 2.0006349828143954
+      },
+      "1024": {
+        "theoretical_macs": {
+          "attention_per_layer": 6442450944,
+          "mlp_per_layer": 8589934592,
+          "total_attention": 128849018880,
+          "total_mlp": 171798691840,
+          "lm_head": 52747567104,
+          "total": 353395277824
+        },
+        "actual_flops": {
+          "total_flops": 707169091584,
+          "total_gflops": 707.169091584
+        },
+        "overhead_percent": 100.10711403342194,
+        "ratio": 2.0010711403342194
+      },
+      "2048": {
+        "theoretical_macs": {
+          "attention_per_layer": 17179869184,
+          "mlp_per_layer": 17179869184,
+          "total_attention": 343597383680,
+          "total_mlp": 343597383680,
+          "lm_head": 105495134208,
+          "total": 792689901568
+        },
+        "actual_flops": {
+          "total_flops": 1586807963648,
+          "total_gflops": 1586.807963648
+        },
+        "overhead_percent": 100.1801663562479,
+        "ratio": 2.0018016635624787
+      }
+    }
+  },
+  "KV": {
+    "model_name": "KV",
+    "attention_type": "KV",
+    "parameters": {
+      "total": 284542976,
+      "trainable": 284542976,
+      "embedding": 53608448,
+      "attention": 62976000,
+      "mlp": 167874560,
+      "layernorm": 83968
+    },
+    "max_seq_len": 2048,
+    "analysis_by_seq_len": {
+      "128": {
+        "theoretical_macs": {
+          "attention_per_layer": 436207616,
+          "mlp_per_layer": 1073741824,
+          "total_attention": 8724152320,
+          "total_mlp": 21474836480,
+          "lm_head": 6593445888,
+          "total": 36792434688
+        },
+        "actual_flops": {
+          "total_flops": 73595486208,
+          "total_gflops": 73.595486208
+        },
+        "overhead_percent": 100.02885601915183,
+        "ratio": 2.0002885601915183
+      },
+      "512": {
+        "theoretical_macs": {
+          "attention_per_layer": 2147483648,
+          "mlp_per_layer": 4294967296,
+          "total_attention": 42949672960,
+          "total_mlp": 85899345920,
+          "lm_head": 26373783552,
+          "total": 155222802432
+        },
+        "actual_flops": {
+          "total_flops": 310550986752,
+          "total_gflops": 310.550986752
+        },
+        "overhead_percent": 100.06789072632942,
+        "ratio": 2.000678907263294
+      },
+      "1024": {
+        "theoretical_macs": {
+          "attention_per_layer": 5368709120,
+          "mlp_per_layer": 8589934592,
+          "total_attention": 107374182400,
+          "total_mlp": 171798691840,
+          "lm_head": 52747567104,
+          "total": 331920441344
+        },
+        "actual_flops": {
+          "total_flops": 664219418624,
+          "total_gflops": 664.219418624
+        },
+        "overhead_percent": 100.11404417711283,
+        "ratio": 2.0011404417711285
+      },
+      "2048": {
+        "theoretical_macs": {
+          "attention_per_layer": 15032385536,
+          "mlp_per_layer": 17179869184,
+          "total_attention": 300647710720,
+          "total_mlp": 343597383680,
+          "lm_head": 105495134208,
+          "total": 749740228608
+        },
+        "actual_flops": {
+          "total_flops": 1500908617728,
+          "total_gflops": 1500.908617728
+        },
+        "overhead_percent": 100.19048737916219,
+        "ratio": 2.001904873791622
+      }
+    }
+  },
+  "Q-KV": {
+    "model_name": "Q-KV",
+    "attention_type": "Q-KV",
+    "parameters": {
+      "total": 284542976,
+      "trainable": 284542976,
+      "embedding": 53608448,
+      "attention": 62976000,
+      "mlp": 167874560,
+      "layernorm": 83968
+    },
+    "max_seq_len": 2048,
+    "analysis_by_seq_len": {
+      "128": {
+        "theoretical_macs": {
+          "attention_per_layer": 436207616,
+          "mlp_per_layer": 1073741824,
+          "total_attention": 8724152320,
+          "total_mlp": 21474836480,
+          "lm_head": 6593445888,
+          "total": 36792434688
+        },
+        "actual_flops": {
+          "total_flops": 73595486208,
+          "total_gflops": 73.595486208
+        },
+        "overhead_percent": 100.02885601915183,
+        "ratio": 2.0002885601915183
+      },
+      "512": {
+        "theoretical_macs": {
+          "attention_per_layer": 2147483648,
+          "mlp_per_layer": 4294967296,
+          "total_attention": 42949672960,
+          "total_mlp": 85899345920,
+          "lm_head": 26373783552,
+          "total": 155222802432
+        },
+        "actual_flops": {
+          "total_flops": 310550986752,
+          "total_gflops": 310.550986752
+        },
+        "overhead_percent": 100.06789072632942,
+        "ratio": 2.000678907263294
+      },
+      "1024": {
+        "theoretical_macs": {
+          "attention_per_layer": 5368709120,
+          "mlp_per_layer": 8589934592,
+          "total_attention": 107374182400,
+          "total_mlp": 171798691840,
+          "lm_head": 52747567104,
+          "total": 331920441344
+        },
+        "actual_flops": {
+          "total_flops": 664219418624,
+          "total_gflops": 664.219418624
+        },
+        "overhead_percent": 100.11404417711283,
+        "ratio": 2.0011404417711285
+      },
+      "2048": {
+        "theoretical_macs": {
+          "attention_per_layer": 15032385536,
+          "mlp_per_layer": 17179869184,
+          "total_attention": 300647710720,
+          "total_mlp": 343597383680,
+          "lm_head": 105495134208,
+          "total": 749740228608
+        },
+        "actual_flops": {
+          "total_flops": 1500908617728,
+          "total_gflops": 1500.908617728
+        },
+        "overhead_percent": 100.19048737916219,
+        "ratio": 2.001904873791622
+      }
+    }
+  },
+  "K": {
+    "model_name": "K",
+    "attention_type": "K",
+    "parameters": {
+      "total": 263550976,
+      "trainable": 263550976,
+      "embedding": 53608448,
+      "attention": 41984000,
+      "mlp": 167874560,
+      "layernorm": 83968
+    },
+    "max_seq_len": 2048,
+    "analysis_by_seq_len": {
+      "128": {
+        "theoretical_macs": {
+          "attention_per_layer": 301989888,
+          "mlp_per_layer": 1073741824,
+          "total_attention": 6039797760,
+          "total_mlp": 21474836480,
+          "lm_head": 6593445888,
+          "total": 34108080128
+        },
+        "actual_flops": {
+          "total_flops": 68226777088,
+          "total_gflops": 68.226777088
+        },
+        "overhead_percent": 100.03112702902118,
+        "ratio": 2.000311270290212
+      },
+      "512": {
+        "theoretical_macs": {
+          "attention_per_layer": 1610612736,
+          "mlp_per_layer": 4294967296,
+          "total_attention": 32212254720,
+          "total_mlp": 85899345920,
+          "lm_head": 26373783552,
+          "total": 144485384192
+        },
+        "actual_flops": {
+          "total_flops": 289076150272,
+          "total_gflops": 289.076150272
+        },
+        "overhead_percent": 100.07293601950767,
+        "ratio": 2.0007293601950766
+      },
+      "1024": {
+        "theoretical_macs": {
+          "attention_per_layer": 4294967296,
+          "mlp_per_layer": 8589934592,
+          "total_attention": 85899345920,
+          "total_mlp": 171798691840,
+          "lm_head": 52747567104,
+          "total": 310445604864
+        },
+        "actual_flops": {
+          "total_flops": 621269745664,
+          "total_gflops": 621.269745664
+        },
+        "overhead_percent": 100.1219330955469,
+        "ratio": 2.0012193309554687
+      },
+      "2048": {
+        "theoretical_macs": {
+          "attention_per_layer": 12884901888,
+          "mlp_per_layer": 17179869184,
+          "total_attention": 257698037760,
+          "total_mlp": 343597383680,
+          "lm_head": 105495134208,
+          "total": 706790555648
+        },
+        "actual_flops": {
+          "total_flops": 1415009271808,
+          "total_gflops": 1415.009271808
+        },
+        "overhead_percent": 100.20206276110899,
+        "ratio": 2.00202062761109
+      }
+    }
+  }
+}

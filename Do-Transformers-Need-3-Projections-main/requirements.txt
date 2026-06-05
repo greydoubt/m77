@@ -1,0 +1,26 @@
+# Core deep learning
+torch>=2.1.0
+transformers>=4.36.0
+
+# Data loading and tokenization
+datasets>=2.16.0
+tokenizers>=0.15.0
+
+# Distributed training
+accelerate>=0.25.0
+
+# Evaluation (downstream tasks)
+lm-eval>=0.4.0
+
+# Optional: flash attention for faster training
+# Comment out if not available in your environment
+# flash-attn>=2.4.0
+
+# Optional: experiment tracking
+# Comment out if you don't use ClearML
+clearml>=1.13.0
+
+# Profiling and analysis
+numpy>=1.24.0
+tqdm>=4.65.0
+pyyaml>=6.0

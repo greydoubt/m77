@@ -1,0 +1,14 @@
+attn_pdrop: 0.0
+embd_pdrop: 0.0
+initializer_range: 0.02
+layer_norm_epsilon: 1.0e-05
+n_embd: 1024
+n_head: 16
+n_inner: 4096
+n_layer: 20
+n_positions: 2048
+resid_pdrop: 0.1
+tie_word_embeddings: true
+use_bias: true
+use_flash_attention: true
+vocab_size: 50304
