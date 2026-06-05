@@ -1,9 +1,23 @@
-<script>
+
     const text = document.querySelector("#text");
     window.addEventListener("resize", (e) => {
         text.innerHTML = "Virtual keyboard detected!!!";
       });
-</script>
+
+var app = this;
+app.hasKeyboard = false;
+this.keyboardPress = function() {
+    app.hasKeyboard = true;
+    $(window).unbind("keyup", app.keyboardPress);
+    localStorage.hasKeyboard = true;
+    console.log("has keyboard!")
+}
+$(window).on("keyup", app.keyboardPress)
+if(localStorage.hasKeyboard) {
+    app.hasKeyboard = true;
+    $(window).unbind("keyup", app.keyboardPress);
+    console.log("has keyboard from localStorage")
+}
 
 
 if ('ontouchstart' in document.documentElement) {
