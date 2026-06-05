@@ -1,0 +1,6 @@
+search_agent = Agent(
+    name="SearchAgent",
+    model="gpt-m77",
+    instructions="${INSTRUCTIONS}",
+    tools=[SearchTool()],
+)
