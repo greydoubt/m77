@@ -1,0 +1,70 @@
+-->
+<graph name = "CombineTwoInputs" xmlns="NYXHADES_COM/PixelBenderGraph/1.0">
+
+    <metadata name = "namespace" value = "AIF" />
+    <metadata name = "vendor" value = "NYXHADES" />
+    <metadata name = "version" type = "int" value = "1" />
+    <metadata name = "clientID" value = "NX Combine" />
+
+
+    <!-- Parameters to the graph -->
+    // An input parameter used to specify the weight of each input image to the output.
+    <parameter type = "float" name = "weight" >
+         <metadata name = "defaultValue" type = "float" value = "0.5" />
+         <metadata name = "minValue" type = "float" value = "0.0" />
+         <metadata name = "maxValue" type = "float" value = "1.0" />
+    </parameter>
+
+
+    <!-- Image inputs and outputs of the graph -->
+    <inputImage  type = "image4" name = "src1" />
+    <inputImage  type = "image4" name = "src2" />
+    <outputImage type = "image4" name = "dst" />
+
+
+    <!-- Embedded kernel -->
+    <kernel>
+        <![CDATA[
+            <languageVersion : 1.0;>
+                kernel Combine
+                <
+                    namespace : "AIF";
+                    vendor : "NX";
+                    version : 1;
+                    clientID : "NX Combine";
+                >
+                {
+                    parameter float weight;
+                    input  image4 src1;
+                    input  image4 src2;
+                    output pixel4 dst;
+
+                    void
+                    evaluatePixel()
+                    {
+                        dst = weight*sampleNearest(src1, outCoord()) + (1.0 - weight)*sampleNearest(src2, outCoord());
+                    }
+                }
+        ]]>
+    </kernel>
+
+
+    <!-- Instances of the nodes -->
+    <node id = "combineFilter" name = "Combine" vendor="NYXHADES" namespace="AIF" version="1" clientID ="NX Combine">
+     <evaluateParameters>
+         <![CDATA[
+         void evaluateParameters()
+         {
+            combineFilter::weight = weight;
+         } 
+         ]]>
+     </evaluateParameters>
+    </node>
+
+    <!-- Connect the graph -->
+    <connect fromImage = "src1" toNode = "combineFilter" toInput = "src1" />
+    <connect fromImage = "src2" toNode = "combineFilter" toInput = "src2" /> />
+    <connect fromNode = "combineFilter" fromOutput = "dst" toImage = "dst" />
+
+</graph>
+
