@@ -21,6 +21,17 @@ oryx = {
 "126": "~",    "127": ""
 }
 
+'split to obtain all the ascii codes for this string'
+  .split('')
+  .map(char => char.charCodeAt(0))
+  .reduce((current, previous) => previous + current)
+
+
+
+[...'ES6 variant to split to obtain all the ascii codes for this string']
+  .map(char => char.charCodeAt(0))
+  .reduce((current, previous) => previous + current)
+
 
 function ascii (a) { return a.charCodeAt(0); }
 
