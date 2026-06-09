@@ -1,0 +1,173 @@
+<div class="container single-page-container">
+	<div class="row">
+				<div class="nv-single-page-wrap col">
+			<div class="nv-page-title-wrap nv-big-title" >
+	<div class="nv-page-title ">
+				<h1>Points List</h1>
+					</div><!--.nv-page-title-->
+</div> <!--.nv-page-title-wrap-->
+	<div class="nv-content-wrap entry-content">
+<p>Each deck must contain minimum 100 cards, and contain no more than one of any given card. The exceptions to this rule are basic lands and cards that explicitly state otherwise. (e.g. Relentless Rats).</p>
+
+
+
+<p>Each deck may contain no more than a maximum of <strong>10</strong> points</p>
+
+
+
+<table id="tablepress-1" class="tablepress tablepress-id-1">
+<thead>
+<tr class="row-1 odd">
+	<th class="column-1">Card Name</th><th class="column-2">Points</th><th class="column-3">Colors</th><th class="column-4">Types</th>
+</tr>
+</thead>
+<tbody class="row-hover">
+<tr class="row-2 even">
+	<td class="column-1">Ancestral Recall</td><td class="column-2">8</td><td class="column-3">Blue</td><td class="column-4">Instant</td>
+</tr>
+<tr class="row-3 odd">
+	<td class="column-1">Ancient Tomb</td><td class="column-2">1</td><td class="column-3">Colorless</td><td class="column-4">Land</td>
+</tr>
+<tr class="row-4 even">
+	<td class="column-1">Balance</td><td class="column-2">1</td><td class="column-3">White</td><td class="column-4">Sorcery</td>
+</tr>
+<tr class="row-5 odd">
+	<td class="column-1">Black Lotus</td><td class="column-2">7</td><td class="column-3">Colorless</td><td class="column-4">Artifact</td>
+</tr>
+<tr class="row-6 even">
+	<td class="column-1">Demonic Tutor</td><td class="column-2">3</td><td class="column-3">Black</td><td class="column-4">Sorcery</td>
+</tr>
+<tr class="row-7 odd">
+	<td class="column-1">Dig Through Time</td><td class="column-2">1</td><td class="column-3">Blue</td><td class="column-4">Instant</td>
+</tr>
+<tr class="row-8 even">
+	<td class="column-1">Flash</td><td class="column-2">7</td><td class="column-3">Blue</td><td class="column-4">Instant</td>
+</tr>
+<tr class="row-9 odd">
+	<td class="column-1">Forth Eorlingas!</td><td class="column-2">1</td><td class="column-3">White/Red</td><td class="column-4">Sorcery</td>
+</tr>
+<tr class="row-10 even">
+	<td class="column-1">Gifts Ungiven</td><td class="column-2">1</td><td class="column-3">Blue</td><td class="column-4">Instant</td>
+</tr>
+<tr class="row-11 odd">
+	<td class="column-1">Imperial Seal</td><td class="column-2">1</td><td class="column-3">Black</td><td class="column-4">Sorcery</td>
+</tr>
+<tr class="row-12 even">
+	<td class="column-1">Intuition</td><td class="column-2">1</td><td class="column-3">Blue</td><td class="column-4">Instant</td>
+</tr>
+<tr class="row-13 odd">
+	<td class="column-1">Mana Crypt</td><td class="column-2">5</td><td class="column-3">Colorless</td><td class="column-4">Artifact</td>
+</tr>
+<tr class="row-14 even">
+	<td class="column-1">Mana Drain</td><td class="column-2">1</td><td class="column-3">Blue</td><td class="column-4">Instant</td>
+</tr>
+<tr class="row-15 odd">
+	<td class="column-1">Mana Vault</td><td class="column-2">1</td><td class="column-3">Colorless</td><td class="column-4">Artifact</td>
+</tr>
+<tr class="row-16 even">
+	<td class="column-1">Merchant Scroll</td><td class="column-2">1</td><td class="column-3">Blue</td><td class="column-4">Sorcery</td>
+</tr>
+<tr class="row-17 odd">
+	<td class="column-1">Mox Emerald</td><td class="column-2">3</td><td class="column-3">Colorless</td><td class="column-4">Artifact</td>
+</tr>
+<tr class="row-18 even">
+	<td class="column-1">Mox Jet</td><td class="column-2">3</td><td class="column-3">Colorless</td><td class="column-4">Artifact</td>
+</tr>
+<tr class="row-19 odd">
+	<td class="column-1">Mox Pearl</td><td class="column-2">3</td><td class="column-3">Colorless</td><td class="column-4">Artifact</td>
+</tr>
+<tr class="row-20 even">
+	<td class="column-1">Mox Ruby</td><td class="column-2">3</td><td class="column-3">Colorless</td><td class="column-4">Artifact</td>
+</tr>
+<tr class="row-21 odd">
+	<td class="column-1">Mox Sapphire</td><td class="column-2">3</td><td class="column-3">Colorless</td><td class="column-4">Artifact</td>
+</tr>
+<tr class="row-22 even">
+	<td class="column-1">Mystical Tutor</td><td class="column-2">2</td><td class="column-3">Blue</td><td class="column-4">Instant</td>
+</tr>
+<tr class="row-23 odd">
+	<td class="column-1">Nadu, Winged Wisdom</td><td class="column-2">1</td><td class="column-3">Blue/Green</td><td class="column-4">Creature</td>
+</tr>
+<tr class="row-24 even">
+	<td class="column-1">Natural Order</td><td class="column-2">1</td><td class="column-3">Green</td><td class="column-4">Sorcery</td>
+</tr>
+<tr class="row-25 odd">
+	<td class="column-1">Psychic Frog</td><td class="column-2">1</td><td class="column-3">Blue/Black</td><td class="column-4">Creature</td>
+</tr>
+<tr class="row-26 even">
+	<td class="column-1">Reanimate</td><td class="column-2">1</td><td class="column-3">Black</td><td class="column-4">Sorcery</td>
+</tr>
+<tr class="row-27 odd">
+	<td class="column-1">Sol Ring</td><td class="column-2">3</td><td class="column-3">Colorless</td><td class="column-4">Artifact</td>
+</tr>
+<tr class="row-28 even">
+	<td class="column-1">Strip Mine</td><td class="column-2">1</td><td class="column-3">Colorless</td><td class="column-4">Land</td>
+</tr>
+<tr class="row-29 odd">
+	<td class="column-1">Tainted Pact</td><td class="column-2">1</td><td class="column-3">Black</td><td class="column-4">Instant</td>
+</tr>
+<tr class="row-30 even">
+	<td class="column-1">Tamiyo, Inquisitive Student</td><td class="column-2">1</td><td class="column-3">Blue</td><td class="column-4">Creature</td>
+</tr>
+<tr class="row-31 odd">
+	<td class="column-1">Thassa’s Oracle</td><td class="column-2">5</td><td class="column-3">Blue</td><td class="column-4">Creature</td>
+</tr>
+<tr class="row-32 even">
+	<td class="column-1">The One Ring</td><td class="column-2">1</td><td class="column-3">Colorless</td><td class="column-4">Artifact</td>
+</tr>
+<tr class="row-33 odd">
+	<td class="column-1">Time Vault</td><td class="column-2">7</td><td class="column-3">Colorless</td><td class="column-4">Artifact</td>
+</tr>
+<tr class="row-34 even">
+	<td class="column-1">Time Walk</td><td class="column-2">5</td><td class="column-3">Blue</td><td class="column-4">Sorcery</td>
+</tr>
+<tr class="row-35 odd">
+	<td class="column-1">Tinker</td><td class="column-2">3</td><td class="column-3">Blue</td><td class="column-4">Sorcery</td>
+</tr>
+<tr class="row-36 even">
+	<td class="column-1">Tolarian Academy</td><td class="column-2">1</td><td class="column-3">Colorless</td><td class="column-4">Land</td>
+</tr>
+<tr class="row-37 odd">
+	<td class="column-1">Treasure Cruise</td><td class="column-2">1</td><td class="column-3">Blue</td><td class="column-4">Sorcery</td>
+</tr>
+<tr class="row-38 even">
+	<td class="column-1">True-Name Nemesis</td><td class="column-2">1</td><td class="column-3">Blue</td><td class="column-4">Creature</td>
+</tr>
+<tr class="row-39 odd">
+	<td class="column-1">Underworld Breach</td><td class="column-2">3</td><td class="column-3">Red</td><td class="column-4">Enchantment</td>
+</tr>
+<tr class="row-40 even">
+	<td class="column-1">Urza's Saga</td><td class="column-2">1</td><td class="column-3">Colourless</td><td class="column-4">Enchantment Land</td>
+</tr>
+<tr class="row-41 odd">
+	<td class="column-1">Vampiric Tutor</td><td class="column-2">2</td><td class="column-3">Black</td><td class="column-4">Instant</td>
+</tr>
+<tr class="row-42 even">
+	<td class="column-1">White Plume Adventurer</td><td class="column-2">1</td><td class="column-3">White</td><td class="column-4">Creature</td>
+</tr>
+<tr class="row-43 odd">
+	<td class="column-1">Wishclaw Talisman</td><td class="column-2">1</td><td class="column-3">Black</td><td class="column-4">Artifact</td>
+</tr>
+<tr class="row-44 even">
+	<td class="column-1">Wrenn and Six</td><td class="column-2">1</td><td class="column-3">Red/Green</td><td class="column-4">Planeswalker</td>
+</tr>
+</tbody>
+</table>
+<!-- #tablepress-1 from cache -->
+
+
+
+<p>In addition, the following cards are banned from Canadian Highlander:</p>
+
+
+
+<p>&#8211; <a href="https://gatherer.wizards.com/Pages/Search/Default.aspx?action=advanced&amp;text=+%5b%22%20ante.%22%5d" target="_blank" rel="noreferrer noopener">Ante cards</a><br>&#8211; <a href="https://gatherer.wizards.com/Pages/Search/Default.aspx?action=advanced&amp;special=true&amp;type=+%5b%22Conspiracy%22%5d" target="_blank" rel="noreferrer noopener">Conspiracy cards</a><br>&#8211; <a href="https://magic.wizards.com/en/articles/archive/news/depictions-racism-magic-2020-06-10" target="_blank" rel="noreferrer noopener">Cards depicting racism and cultural insensitivity</a><br>&#8211; <a href="https://magic.wizards.com/en/news/announcements/may-13-2024-banned-and-restricted-announcement" target="_blank" rel="noopener" title="">Cards containing stickers or attractions</a><br>&#8211; Dexterity cards<br>&#8211; Silver-bordered cards<br>&#8211; Acorn cards<br>&#8211; Sub-game cards</p>
+
+
+
+<p>Effectively, Canadian Highlander shares a banned list with Vintage.</p>
+</div>		</div>
+			</div>
+</div>
+
+</main><!--/.neve-main-->
