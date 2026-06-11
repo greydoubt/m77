@@ -25,7 +25,7 @@ Q–K=V: separate query, shared key and value (asymmetric, hence directional vec
 
 # Jupyter Notebook Extension: User Interaction Logger
 
-Jupyter Notebook Extension to track user interation. 
+Jupyter Notebook Extension to track user interaXtion. 
 
 ## Set up
 
