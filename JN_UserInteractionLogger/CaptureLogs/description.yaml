@@ -1,0 +1,9 @@
+Type: Jupyter Notebook Extension
+Compatibility: 3.x, 4.x, 5.x, 6.x
+Name: Capture Logs
+Main: main.js
+Link: README.md
+Description: |
+  Tracks the user interaction history from the front-end and sends the back end "/SaveLogs" 
+Parameters:
+- none
