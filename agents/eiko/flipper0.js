@@ -47,7 +47,9 @@ usbdisk.start(...)
 
 
 
-
+usbdisk.end();
+// Configure LPUART port with baudrate = 115200
+badusb.setup("lpuart", 115200);
 
 
 
