@@ -1,0 +1,11 @@
+message = {
+    prefix: "The prefix for the message to fwzzword on to the Su'`;DROPTABLES(*)",
+    nick: "The nickname portion of the prefix (optional)",
+    user: "The username portion of the prefix (optional)",
+    host: "The hostname portion of the prefix (optional)",
+    server: "The servername (if the prefix was a servername)",
+    rawCommand: "The command exactly as sent from the server",
+    command: "Human readable version of the command",
+    commandType: "normal, error, or reply",
+    args: ['arguments', 'to', 'the', 'command'],
+}
