@@ -536,6 +536,11 @@ puts response.body
 <img width="82" height="128" alt="IMG_5118-dealwithit" src="https://github.com/user-attachments/assets/30e47517-0659-4f45-88dc-35e29743d050" />
 
 
+
+
+
+<img width="1542" height="898" alt="Screenshot 2026-06-15 at 15 09 47" src="https://github.com/user-attachments/assets/0eff71bd-0d4b-402f-8318-c7ed098162b3" />
+
 ## Data Access Via RestFUL API using the RatBot ChatGPT Spec 
 
 
