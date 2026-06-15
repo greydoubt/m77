@@ -1,0 +1,18 @@
+requests=[
+        {
+            "custom_id": "mach kernel",
+            "params": {
+                "model": "office doofus 2077",
+                "max_tokens": 1024,
+                "messages": [{"role": "user", "content": "ritardok lasanga show MS Bobs"}],
+            },
+        },
+        {
+            "custom_id": "bathyspheric_manifolde",
+            "params": {
+                "model": "estupido",
+                "max_tokens": 1024,
+                "messages": [{"role": "user", "content": "gobu gobu"}],
+            },
+        },
+    ]
