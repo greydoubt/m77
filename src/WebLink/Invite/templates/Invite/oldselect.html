@@ -1,0 +1,443 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>select time</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap" rel="stylesheet">
+
+</head>
+<style>
+    * {
+        font-family: 'Space Grotesk', sans-serif;
+    }
+    
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: rgb(182, 182, 182);
+    }
+    
+    .container {
+        border-radius: 10px;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        width: 65%;
+        height: 70%;
+        padding: 10px;
+    }
+    /* Left column */
+    
+    .left-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-basis: 25%;
+        border-right: 1px black solid;
+    }
+    
+    .left-column .box {
+        align-items: center;
+        justify-content: center;
+        margin: 10px 0 0 0;
+        width: 90%;
+    }
+    
+    .left-column .company {
+        height: 15%;
+    }
+    
+    .left-column .info {
+        height: 35%;
+    }
+    
+    .left-column .cridentials {
+        height: 10%;
+        margin-top: 81%;
+    }
+    
+    .right-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-grow: 1;
+    }
+    
+    .right-column .box {
+        align-items: center;
+        justify-content: center;
+        margin: 10px 0 0 0;
+        width: 96%;
+    }
+    
+    .right-column .title {
+        height: 10%;
+        padding-top: 1%;
+    }
+    
+    .right-column .content {
+        height: 80%;
+    }
+    
+    .companyName {
+        font-size: 25px;
+    }
+    
+    .inviter {
+        font-size: 13px;
+        font-weight: bold;
+    }
+    
+    .header {
+        font-weight: bold;
+        font-size: 18px;
+    }
+    
+    .header,
+    .inviter {
+        margin-bottom: -5px;
+    }
+    
+    .setting {
+        margin-top: -10px;
+    }
+    
+    .time,
+    .setting,
+    .description {
+        font-size: 12px;
+    }
+    
+    .description {
+        margin-top: 25px;
+    }
+    
+    .footer {
+        font-size: 15px;
+    }
+    
+    .progress-bar {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 65%;
+        margin: 20px auto;
+    }
+    
+    .circle-container {
+        position: relative;
+    }
+    
+    .circle {
+        width: 15px;
+        height: 15px;
+        border: 1.5px solid grey;
+        border-radius: 50%;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .circle.completed {
+        background-color: #5DA5A5;
+    }
+    
+    .circle-text {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 12px;
+        width: 100px;
+        text-align: center;
+    }
+    
+    .line {
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        background-color: #000;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    /* CALENDAR CSS */
+    
+    #calendar {
+        height: 100%;
+        font-size: 13px;
+        height: 90%;
+        width: 95%;
+    }
+    
+    .container-col {
+        display: flex;
+        height: 100%;
+        justify-content: space-between;
+    }
+    
+    .column {
+        flex-grow: 1;
+        padding: 10px;
+    }
+    
+    .column1 {
+        padding-left: 20px;
+        width: 70%;
+        margin-right: 15px;
+    }
+    
+    .column2 {
+        width: 30%;
+        padding: None;
+    }
+    
+    .title2 {
+        margin-top: 10px;
+        font-size: 13px;
+    }
+    
+    .fc-day:hover {
+        background-color: #5DA5A5;
+        cursor: pointer;
+        color: white;
+    }
+    
+    .selected-day {
+        background-color: #5DA5A5;
+        color: white;
+    }
+    
+    .special {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .day-time {
+        width: 100%;
+        height: 10%;
+        border: 2px solid #5DA5A5;
+        color: #5DA5A5;
+        margin-top: 10px;
+        text-align: center;
+        font-size: 13px;
+        cursor: pointer;
+    }
+    
+    .day-time:active {
+        color: white;
+        background-color: #5DA5A5;
+    }
+    
+    .button-next {
+        height: 25px;
+        width: 204px;
+        color: white;
+        background-color: #5DA5A5;
+        border: none;
+        cursor: pointer;
+    }
+    
+    #times {
+        margin-top: 20%;
+        align-items: center;
+        text-align: center;
+        align-content: center;
+        width: 70%;
+        height: 70%;
+        margin-bottom: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<body>
+    <div class="container">
+        <div class="left-column">
+            <div class="company box">
+                <p class="companyName">McKinsey & Company</p>
+            </div>
+            <div class="info box">
+                <p class="inviter">Ben Valk</p>
+                <p class="header">1:1 with Chi</p>
+                <p class="time">30 mins</p>
+                <p class="setting">Teams Meeting</p>
+                <p class="description">Our team will meet to review pricing options for q copywriter and enigma</p>
+            </div>
+            <div class="cridentials box">
+                <p class="footer">Meeting scheduled by Q</p>
+            </div>
+        </div>
+        <div class="right-column">
+            <div class="title box">
+                <div class="progress-bar">
+                    <div class="line"></div>
+                    <div class="circle-container">
+                        <div class="circle" id="circle1"></div>
+                        <div class="circle-text">Choose Time</div>
+                    </div>
+                    <div class="circle-container">
+                        <div class="circle" id="circle2"></div>
+                        <div class="circle-text">Your info</div>
+                    </div>
+                    <div class="circle-container">
+                        <div class="circle" id="circle3"></div>
+                        <div class="circle-text">Confirmation</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="content box">
+                <!-- <div id='calendar' class="side"></div> -->
+                <div class="container-col">
+                    <div class="column column1">
+                        <div class=title2>Select date and time</div>
+                        {% csrf_token %}
+                        <div id='calendar'></div>
+                    </div>
+                    <div class="column column2 special">
+                        {% if visible %}
+                        <p id="selectedDate">{{date}}</p>
+                        {% endif %}
+
+                        <div id="times">
+                            <form method="post" id="dateSelectionForm">
+                                <input type="hidden" name="selectedDate" id="selectedDateInput"> {% csrf_token %}
+                            </form>
+                            {% for free_time in free_times %}
+                            <div class=day-time id="interval">{{ free_time.start_time }}</div>
+                            {% endfor %}
+                        </div>
+
+                        {% if visible %}
+                        <a href="{% url 'pageTwo' %}">
+                            <button class="button-next" id="nextButton">Next</button>
+                        </a>
+                        {% endif %}
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            var selectedDateParagraph = document.getElementById('selectedDate');
+            var availableTimesDiv = document.getElementById('times');
+            var nextButton = document.getElementById('nextButton');
+            var calendarEl = document.getElementById('calendar');
+
+
+
+
+
+
+            // console.log(myData)
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+
+                // events: function(fetchInfo, successCallback, failureCallback) {
+                //     var myData = ('{{ na_days|escapejs }}');
+
+
+                //     console.log((myData))
+
+                //     var noTimesDates = [
+
+                //     ];
+
+                //     for (let i = 0; i < myData.length; i++) {
+                //         noTimesDates.push(myData[i]);
+                //     }
+
+                //     console.log(noTimesDates)
+
+
+                //     var events = noTimesDates.map(function(date) {
+                //         return {
+                //             title: 'NA',
+                //             start: date,
+                //             backgroundColor: 'lightgray',
+                //             textColor: 'red',
+                //             selectable: false,
+                //         };
+                //     });
+
+                //     successCallback(events);
+                // },
+
+                dateClick: function(info) {
+                    var selectedDate = info.dateStr;
+                    var selectedDate = info.date.toISOString().slice(0, 10);
+                    document.getElementById('selectedDateInput').value = selectedDate;
+                    info.jsEvent.preventDefault();
+                    document.getElementById('dateSelectionForm').submit();
+                    info.jsEvent.preventDefault();
+
+                    selectedDateParagraph.textContent = selectedDate;
+                    var selectedDayElement = document.querySelector('.selected-day');
+                    if (selectedDayElement) {
+                        selectedDayElement.classList.remove('selected-day');
+                    }
+                    var clickedDayElement = info.dayEl;
+                    clickedDayElement.classList.add('selected-day');
+
+                    if (nextButton) {
+                        nextButton.style.display = 'block'; // or 'inline' or any appropriate display style
+                    }
+                },
+
+
+            });
+
+
+            calendar.render();
+
+
+
+        });
+    </script>
+
+
+
+
+
+
+
+
+    <script>
+        const circles = document.querySelectorAll(".circle");
+        let currentPage = 1;
+
+        function updateProgress() {
+            for (let i = 0; i < circles.length; i++) {
+                if (i < currentPage) {
+                    circles[i].classList.add("completed");
+                } else {
+                    circles[i].classList.remove("completed");
+                }
+            }
+        }
+        updateProgress();
+    </script>
+
+</body>
+
+</html>
