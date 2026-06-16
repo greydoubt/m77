@@ -1,0 +1,272 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>select time</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap" rel="stylesheet">
+
+</head>
+<style>
+    * {
+        font-family: 'Space Grotesk', sans-serif;
+    }
+    
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: rgb(182, 182, 182);
+    }
+    
+    .container {
+        border-radius: 10px;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        width: 65%;
+        height: 70%;
+        padding: 10px;
+    }
+    /* Left column */
+    
+    .left-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-basis: 25%;
+        border-right: 1px black solid;
+    }
+    
+    .left-column .box {
+        align-items: center;
+        justify-content: center;
+        margin: 10px 0 0 0;
+        width: 90%;
+    }
+    
+    .left-column .company {
+        height: 15%;
+    }
+    
+    .left-column .info {
+        height: 35%;
+    }
+    
+    .left-column .cridentials {
+        height: 10%;
+        margin-top: 81%;
+    }
+    
+    .right-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-grow: 1;
+    }
+    
+    .right-column .box {
+        align-items: center;
+        justify-content: center;
+        margin: 10px 0 0 0;
+        width: 96%;
+    }
+    
+    .right-column .title {
+        height: 10%;
+        padding-top: 1%;
+    }
+    
+    .right-column .content {
+        height: 80%;
+    }
+    
+    .companyName {
+        font-size: 25px;
+    }
+    
+    .inviter {
+        font-size: 13px;
+        font-weight: bold;
+    }
+    
+    .header {
+        font-weight: bold;
+        font-size: 18px;
+    }
+    
+    .header,
+    .inviter {
+        margin-bottom: -5px;
+    }
+    
+    .setting {
+        margin-top: -10px;
+    }
+    
+    .time,
+    .setting,
+    .description {
+        font-size: 12px;
+    }
+    
+    .description {
+        margin-top: 25px;
+    }
+    
+    .footer {
+        font-size: 15px;
+    }
+    
+    .progress-bar {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 65%;
+        margin: 20px auto;
+    }
+    
+    .circle-container {
+        position: relative;
+    }
+    
+    .circle {
+        width: 15px;
+        height: 15px;
+        border: 1.5px solid grey;
+        border-radius: 50%;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .circle.completed {
+        background-color: #5DA5A5;
+    }
+    
+    .circle-text {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 12px;
+        width: 100px;
+        text-align: center;
+    }
+    
+    .line {
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        background-color: #000;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .content img {
+        margin-top: -10%;
+        width: 15%;
+    }
+    
+    .content .text1 {
+        font-size: 20px;
+        color: #5DA5A5;
+        font-weight: bolder;
+    }
+    
+    .content .text2 {
+        text-align: center;
+        font-size: 13px;
+        width: 300px;
+        margin-top: -8px;
+    }
+    
+    .content .click {
+        font-size: 13px;
+        padding: 7px 12px 7px 12px;
+        background-color: #5DA5A5;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="left-column">
+            <div class="company box">
+                <p class="companyName">McKinsey & Company</p>
+            </div>
+            <div class="info box">
+                <p class="inviter">Ben Valk</p>
+                <p class="header">1:1 with Chi</p>
+                <p class="time">30 mins</p>
+                <p class="setting">Teams Meeting</p>
+                <p class="description">Our team will meet to review pricing options for q copywriter and enigma</p>
+            </div>
+            <div class="cridentials box">
+                <p class="footer">Meeting scheduled by Q</p>
+            </div>
+        </div>
+        <div class="right-column">
+            <div class="title box">
+                <div class="progress-bar">
+                    <div class="line"></div>
+                    <div class="circle-container">
+                        <div class="circle" id="circle1"></div>
+                        <div class="circle-text">Choose Time</div>
+                    </div>
+                    <div class="circle-container">
+                        <div class="circle" id="circle2"></div>
+                        <div class="circle-text">Your info</div>
+                    </div>
+                    <div class="circle-container">
+                        <div class="circle" id="circle3"></div>
+                        <div class="circle-text">Confirmation</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content box">
+                <img src="{% static 'images/celebrate.png' %}" alt="Image Description">
+                <p class="text1">Meeting Scheduled!</p>
+                <div class="text2">
+                    <p>You will be receiving a confirmation email at samin@tenet.com with the meeting invites</p>
+                </div>
+                <p class="click">Send confirmation again</p>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        const circles = document.querySelectorAll(".circle");
+        let currentPage = 3;
+
+        function updateProgress() {
+            for (let i = 0; i < circles.length; i++) {
+                if (i < currentPage) {
+                    circles[i].classList.add("completed");
+                } else {
+                    circles[i].classList.remove("completed");
+                }
+            }
+        }
+        updateProgress();
+    </script>
+
+</body>
+
+</html>

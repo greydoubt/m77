@@ -1,0 +1,12 @@
+BEGIN:VCALENDAR
+BEGIN:VEVENT
+SUMMARY:Placeholder Title
+DTSTART:20230910T100000
+DTEND:20230910T110000
+ATTENDEE:participant1@example.com
+ATTENDEE:participant2@example.com
+DESCRIPTION:Link: https://example.com\nParticipants: participant1@example.
+ com\, participant2@example.com
+LOCATION:Placeholder Location
+END:VEVENT
+END:VCALENDAR
