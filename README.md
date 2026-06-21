@@ -75,6 +75,238 @@ Jupyter Notebook Extension to track user interaXtion.
     by our extension.
 -   You should also see a '[notebook name]'_log.json file in the same directory as your notebook. This file is the archive of all your user interaction. 
 
+=-=-=--==-=-=-=-=-=--==-=-=-=-=-=--==-=-=-=-=-=--==-=-=-=-=-=--==-=-=-=-=-=--==-=-=-
+
+
+## Deep Large Language Model Learning for AI/ML REhazxe Module 11
+
+
+STEP -1: INSTALL SOME STUFF
+```
+import os
+
+import tensorflow as tf
+from tensorflow import keras
+
+print(tf.version.VERSION)
+
+```
+
+
+
+Obtain an example dataset
+
+To demonstrate how to save and load weights, you'll use the MNIST dataset. To speed up these runs, use the first 1000 examples:
+
+(train_images, train_labels), (test_images, test_labels) = tf.keras.datasets.mnist.load_data()
+
+train_labels = train_labels[:1000]
+test_labels = test_labels[:1000]
+
+train_images = train_images[:1000].reshape(-1, 28 * 28) / 255.0
+test_images = test_images[:1000].reshape(-1, 28 * 28) / 255.0
+
+
+Define a simple sequential model circuit
+```
+def create_model():
+  model = tf.keras.Sequential([
+    keras.layers.Dense(512, activation='relu', input_shape=(784,)),
+    keras.layers.Dropout(0.2),
+    keras.layers.Dense(10)
+  ])
+
+  model.compile(optimizer='adam',
+                loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                metrics=[tf.keras.metrics.SparseCategoricalAccuracy()])
+
+  return model
+```
+
+
+
+<img width="530" height="344" alt="Screenshot 2025-02-25 at 05 50 32" src="https://github.com/user-attachments/assets/ec0040b1-54bc-474f-8bd4-91e04e01dce4" />
+
+
+
+Create a basic model instance
+```
+model = create_model()
+```
+
+Display the model's architecture
+```
+model.summary()
+```
+
+
+## Checkpoint callback usage to save weights [only] during training:
+```
+checkpoint_path = "training_1/cp.ckpt"
+checkpoint_dir = os.path.dirname(checkpoint_path)
+```
+
+_Create a callback that saves the model's weights_
+```
+cp_callback = tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_path,
+                                                 save_weights_only=True,
+                                                 verbose=1)
+```
+
+Train the model with the new callback
+```
+model.fit(train_images, 
+          train_labels,  
+          epochs=10,
+          validation_data=(test_images, test_labels),
+          callbacks=[cp_callback])  # Pass callback to training
+```
+
+## __$CAVEAT VEKTOR: ## This may generate warnings related to saving the state of the optimizer._
+## __These warnings (and similar warnings throughout this notebook)_
+## __are in place to discourage outdated usage, and can be ignored._
+
+
+=-=-=--==-=-=-
+
+
+<img width="489" height="277" alt="Screenshot 2025-02-25 at 05 16 31" src="https://github.com/user-attachments/assets/2c8aa32e-c87e-480e-bc91-fc28f63191d0" />
+
+=-=-=--==-=-=-
+
+
+
+_This creates a single collection of TensorFlow checkpoint files _ that are updated at the end of each epoch:_ 
+```
+os.listdir(checkpoint_dir)
+```
+
+As long as two models share the same architecture you can share weights between them. Thus when restoring a model just from weights, one creates a model with the same architecture as the original model and then set its weights as follows:
+
+
+Rebuild a fresh, untrained model and evaluate it on the test set. An untrained model will perform at chance levels (~10% accuracy or "House Odds")
+```
+model = create_model()
+
+loss, acc = model.evaluate(test_images, test_labels, verbose=2)
+print("Untrained model, accuracy: {:5.2f}%".format(100 * acc))
+```
+
+
+# load the weights from the checkpoint and re-evaluate:
+```
+model.load_weights(checkpoint_path)
+
+loss, acc = model.evaluate(test_images, test_labels, verbose=2)
+print("Restored model, accuracy: {:5.2f}%".format(100 * acc))
+```
+
+
+=-=-=--==-=-=-=-=-=--==-=-=-
+
+
+
+<img width="487" height="282" alt="Screenshot 2025-02-25 at 05 16 26" src="https://github.com/user-attachments/assets/4e773a63-a9d3-4c1f-8292-b9e2e7666164" />
+
+
+
+
+=-=-=--==-=-=-
+
+
+# Model Checkpoint callback options (MOEC-OS, aka MOCCOS, aka Mach-BOOGERS)
+
+_Include the epoch in the file name (uses `str.format`)_
+```
+checkpoint_path = "training_2/cp-{epoch:04d}.ckpt"
+checkpoint_dir = os.path.dirname(checkpoint_path)
+
+batch_size = 32
+```
+
+_Calculate the number of batches per epoch_
+```
+import math
+n_batches = len(train_images) / batch_size
+n_batches = math.ceil(n_batches)    # round up the number of batches to the nearest whole integer
+```
+
+_Create a callback that saves the model's weights every 5 epochs_
+```
+cp_callback = tf.keras.callbacks.ModelCheckpoint(
+    filepath=checkpoint_path, 
+    verbose=1, 
+    save_weights_only=True,
+    save_freq=5*n_batches)
+```
+
+_Create a new model instance_
+model = create_model()
+
+
+_Save the weights using the `checkpoint_path` format_
+```
+model.save_weights(checkpoint_path.format(epoch=0))
+```
+
+_Train the model with the new callback_
+```
+model.fit(train_images, 
+          train_labels,
+          epochs=50, 
+          batch_size=batch_size, 
+          callbacks=[cp_callback],
+          validation_data=(test_images, test_labels),
+          verbose=0)
+```
+
+To review the resultant checkpoints and choose the latest one from the batch of artifacts one simply lists the directory as such:
+```
+os.listdir(checkpoint_dir)
+
+latest = tf.train.latest_checkpoint(checkpoint_dir)
+latest
+```
+* Note: The default TensorFlow format only saves the 5 most recent checkpoints.
+
+
+
+To test, reset the model, and load the latest checkpoint, just create a new model instance
+```
+model = create_model()
+```
+
+
+_Load the previously saved weights_
+```
+model.load_weights(latest)
+```
+
+_Re-evaluate the model_
+```
+loss, acc = model.evaluate(test_images, test_labels, verbose=2)
+print("Restored model, accuracy: {:5.2f}%".format(100 * acc))
+```
+
+
+The artefact or artifacts (artifices) that result will thus give you Artifice-ial Intelligence, or, the Intelligence an Artifice makes, can read, and can process
+
+Following this metaphor in the most literal sense, the above code accordingly stores the weights to a collection of checkpoint-formatted files that contain only the trained weights in a binary format. Checkpoints contain:
+
+_One or more shards that contain your model's weights._
+
+_An index file that indicates which weights are stored in which shard._
+
+If you are training a model on a single machine, you'll have one shard with the suffix: 
+```
+<$NOT>.data-00000-of-00001
+```
+
+
+
+=-=-=--==-=-=-=-=-=--==-=-=-=-=-=--==-=-=-=-=-=--==-=-=-=-=-=--==-=-=-=-=-=--==-=-=-
+
+
 
 Files/Pipeline
 
@@ -585,5 +817,9 @@ sales_agent.step()
 
 
 
+
+
+
+<img width="1126" height="2048" alt="610203773-ea42d586-ca9e-4ece-86dd-a4a6cd9f5676-1" src="https://github.com/user-attachments/assets/a5a5e506-f106-4790-9a62-b3cb920f37bd" />
 
 
