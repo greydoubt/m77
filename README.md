@@ -78,6 +78,11 @@ Jupyter Notebook Extension to track user interaXtion.
 =-=-=--==-=-=-=-=-=--==-=-=-=-=-=--==-=-=-=-=-=--==-=-=-=-=-=--==-=-=-=-=-=--==-=-=-
 
 
+<img width="1359" height="763" alt="Screenshot 2026-06-22 at 09 02 34" src="https://github.com/user-attachments/assets/ff166e29-7b56-4aad-9588-d04b420eab42" />
+
+
+
+
 ## Deep Large Language Model Learning for AI/ML REhazxe Module 11
 
 
