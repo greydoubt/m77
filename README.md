@@ -343,11 +343,18 @@ url, status, datetime, flag, dataset, batch, xml_doc_length, xml_script_length, 
 ```
 
 
+<img width="996" height="513" alt="Screen Shot 2016-12-16 at 22 24 59" src="https://github.com/user-attachments/assets/26de37be-fc46-4c35-a06c-f0a30de0d090" />
 
-
-
-# lyra (agentic hardness for generic point-token GPT m77 LLM AI/ML models)
 ==============
+
+
+# Introducing! 
+#  lyra (
+# The LAMBDA y-REACTOR ANGENT
+
+## _The_ first-in-class agentic hardness for generic point-token GPT m77 LLM AI/ML models)
+
+========================================================
 
 Consider a generic LLM call to complete an arbitrary query with one single and only one single completion as the response to that call. This requires 2+3 = 5 points of infrastruction to pump tokens, thus:
 
