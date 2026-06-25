@@ -17,7 +17,7 @@ Q–K=V: separate query, shared key and value (asymmetric, hence directional vec
 
 
 
-## Data UI/UX: Jupyter and Satvrnos: The Notebook Hack
+## Data UI/UX: The Jupyter & Sekka Satvrnos: The Notebook Hack
 
 ================
 
